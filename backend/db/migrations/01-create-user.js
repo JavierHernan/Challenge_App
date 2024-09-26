@@ -26,9 +26,6 @@ module.exports = {
         type: Sequelize.STRING.BINARY,
         allowNull: false
       },
-      bounties: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
