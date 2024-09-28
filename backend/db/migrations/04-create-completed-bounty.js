@@ -20,7 +20,6 @@ module.exports = {
       bountyId: {
         type: Sequelize.INTEGER,
         references: {model: "Bounties", key: "id"}
-        // Might have to include onDelete: "CASCADE"
       },
       completed: {
         type: Sequelize.BOOLEAN

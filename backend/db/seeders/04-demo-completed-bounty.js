@@ -1,5 +1,5 @@
 'use strict';
-const {CompletedBounty} = require('../models')
+const {CompletedBounty} = require('../models');
 const bcrypt = require("bcryptjs");
 
 let options = {};
@@ -79,7 +79,7 @@ module.exports = {
         bountyId:  6,
         completed: true,
       },
-    ], { validate: true })
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {

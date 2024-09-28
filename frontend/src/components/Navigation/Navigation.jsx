@@ -4,7 +4,7 @@ import ProfileButton from './ProfileButton';
 // import OpenModalButton from '../OpenModalButton';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 // import LoginFormModal from '../LoginFormModal';
-import LoginFormModal from '../LoginFormModal/LoginFromModal';
+import LoginFormModal from '../LoginFormModal/LoginFormModal';
 // import SignupFormModal from '../SignupFormModal';
 import SignupFormModal from '../SignupFormPage/SignupFormPage';
 import './Navigation.css';
@@ -41,7 +41,8 @@ function Navigation({ isLoaded }) {
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">Bounties</NavLink>
+        <NavLink to="/leaderboards">Leaderboards</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>

@@ -1,5 +1,5 @@
 'use strict';
-const {Bounty} = require('../models')
+const {Bounty} = require('../models');
 const bcrypt = require("bcryptjs");
 
 let options = {};

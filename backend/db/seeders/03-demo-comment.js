@@ -1,5 +1,5 @@
 'use strict';
-const {Comment} = require('../models')
+const {Comment} = require('../models');
 const bcrypt = require("bcryptjs");
 
 let options = {};
@@ -69,7 +69,7 @@ module.exports = {
         userId:  1,
         bountyId:  6,
       },
-    ], { validate: true })
+    ], { validate: true });
   },
 
   async down (queryInterface, Sequelize) {
