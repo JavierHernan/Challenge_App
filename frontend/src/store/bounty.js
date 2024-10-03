@@ -6,7 +6,7 @@ const ADD_BOUNTY = 'bounty/addBounty';
 const UPDATE_BOUNTY = 'bounty/updateBounty';
 const DELETE_BOUNTY = 'bounty/deleteBounty';
 
-//Action Creator
+//Action Creators
 //view all bounties
 const setBounties = (bounties) => {
     return {
@@ -21,14 +21,14 @@ const addBounty = (bounty) => {
         payload: bounty
     };
 };
-// Update bounty
+// update bounty
 const updateBounty = (bounty) => {
     return {
         type: UPDATE_BOUNTY,
         payload: bounty
     };
 };
-// Delete bounty
+// delete bounty
 const deleteBounty = (bountyId) => {
     return {
         type: DELETE_BOUNTY,
@@ -37,17 +37,19 @@ const deleteBounty = (bountyId) => {
 };
 
 //Thunks
-// Fetch all bounties
+// fetch all bounties
 export const fetchBounties = () => async (dispatch) => {
-    const response = await csrfFetch('/api/bounties');
+    const response = await csrfFetch('/api/bounty');
+    // console.log("fetchBounties response", response)
     if (response.ok) {
         const bounties = await response.json();
+        // console.log("fetchBounties bounties", bounties)
         dispatch(setBounties(bounties));
     }
 };
-// Create a new bounty
+// create new bounty
 export const createBounty = (bountyData) => async (dispatch) => {
-    const response = await csrfFetch('/api/bounties', {
+    const response = await csrfFetch('/api/bounty', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bountyData)
@@ -58,9 +60,9 @@ export const createBounty = (bountyData) => async (dispatch) => {
         dispatch(addBounty(newBounty));
     }
 };
-// Update an existing bounty
+// update bounty
 export const updateExistingBounty = (bountyId, bountyData) => async (dispatch) => {
-    const response = await csrfFetch(`/api/bounties/${bountyId}`, {
+    const response = await csrfFetch(`/api/bounty/${bountyId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bountyData)
@@ -73,7 +75,7 @@ export const updateExistingBounty = (bountyId, bountyData) => async (dispatch) =
 };
 // Delete a bounty
 export const removeBounty = (bountyId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/bounties/${bountyId}`, {
+    const response = await csrfFetch(`/api/bounty/${bountyId}`, {
         method: 'DELETE',
     });
 
@@ -89,6 +91,11 @@ const initialState = {
 const bountyReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_BOUNTIES:
+            // console.log("REDUCER state", state)
+            // console.log("REDUCER action.payload", action.payload)
+            // const bounties = Array.isArray(action.payload) ? action.payload : [action.payload];
+            // console.log("REDUCER bounties", bounties)
+            // return { ...state, bounties };  // Use the array-ified bounties
             return { ...state, bounties: action.payload };
         case ADD_BOUNTY:
             return { ...state, bounties: [...state.bounties, action.payload] };

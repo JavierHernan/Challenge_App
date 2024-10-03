@@ -40,7 +40,7 @@ router.get(
         // const bounties = await Bounty.findAll({
         //     attributes: { exclude: ['bountyId'] } // WHY DO I NEED TO EXCLUDE BOUNTYID?????
         //   });
-        console.log("bounties", bounties)
+        // console.log("bounties", bounties)
         return res.status(201).json(bounties)
         } catch (error) {
             next(error)

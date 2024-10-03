@@ -7,6 +7,8 @@ import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import Leaderboards from './components/Leaderboards/Leaderboards';
+import BountyDetails from './components/BountyDetails/BountyDetails';
+import CreateBounty from './components/CreateBounty/CreateBounty';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: '/leaderboards',
         element: <Leaderboards />
+      },
+      {
+        path: '/bounty/:bountyId',
+        element: <BountyDetails />
+      },
+      {
+        path: '/bounty/new',
+        element: <CreateBounty />
       }
     ]
   }

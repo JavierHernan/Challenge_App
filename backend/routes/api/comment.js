@@ -6,6 +6,8 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
+const { Comment } = require('../../db/models')
+const { User } = require('../../db/models')
 
 const validateComment = [
     check('comment')
@@ -18,15 +20,16 @@ const validateComment = [
 
 //Get All Comments by Bounty id
 router.get(
-    '/:bountyId/comments',
+    '/:bountyId',
     async (req, res, next) => {
         try {
             const { bountyId } = req.params;
-
+            console.log("bountyId", bountyId)
             const comments = await Comment.findAll({
                 where: { bountyId },
                 include: { model: User, attributes: ['id', 'username'] } // Include user info if needed
             });
+            console.log("comments in Backend")
 
             if (!comments.length) {
                 return res.status(404).json({ message: "No comments found for this bounty." });
@@ -41,7 +44,7 @@ router.get(
 
 //Create a Comment for a Bounty based on Bounty.id
 router.post(
-    '/:bountyId/comments',
+    '/:bountyId',
     requireAuth, // Require user to be logged in
     validateComment, // Apply validation
     async (req, res, next) => {
@@ -66,7 +69,7 @@ router.post(
 
 //Update a Comment belonging to Current User
 router.put(
-    '/:commentId',
+    '/:bountyId/:commentId',
     requireAuth,
     validateComment,
     async (req,res, next) => {
@@ -97,7 +100,7 @@ router.put(
 
 //Delete a Comment belonging to Current User
 router.delete(
-    '/:commentId',
+    '/:bountyId/:commentId',
     requireAuth,
     async (req, res, next) => {
         try {
