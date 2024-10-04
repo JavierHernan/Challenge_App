@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBounties } from '../../store/bounty';
+import { fetchBounties, removeBounty } from '../../store/bounty';
 import { useNavigate } from 'react-router-dom';
 import BountyCard from '../BountyCard/BountyCard';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import UpdateBountyForm from '../BountyModals/UpdateBountyForm';
 
 export default function SplashPage() {
     const dispatch = useDispatch();
@@ -25,26 +27,42 @@ export default function SplashPage() {
     const goToCreateBounty = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        navigate(`/create-bounty`);  // Navigate to the Create Bounty form
+        navigate(`/bounty/new`);  // Navigate to the Create Bounty form
+    };
+    const handleDelete = (bountyId) => {
+        dispatch(removeBounty(bountyId));
     };
 
     return(
         <>
             <div className="SplashPage">
-                <div className="SplashPage__title">
-                    <h1>Welcome to Challenge Bounty</h1>
-                    <p>Discover all available bounties</p>
+                <div className="SplashPage-title">
+                    <h1>Welcome Challenger</h1>
+                    <p>Discover all available Bounties</p>
                 </div>
                 {user && ( // Show the button only if the user is logged in
-                    <button className="SplashPage__createButton" onClick={goToCreateBounty}>
+                    <button className="create-bounty-button" onClick={goToCreateBounty}>
                         Create a Bounty
                     </button>
                 )}
-                <div className="SplashPage__bounties">
+                <div className="SplashPage-bounties">
                     {bounties && bounties.map(bounty => (
-                        <div key={bounty.id} className="SplashPage__bounty" onClick={(e) => goToBounty(e, bounty)}>
-                            <BountyCard key={bounty.id} bounty={bounty} userId={user.id} />
-                        </div>
+                        <>
+                            <div key={bounty.id} className="SplashPage-bounty" onClick={(e) => goToBounty(e, bounty)}>
+                                <BountyCard key={bounty.id} bounty={bounty} userId={user.id} />
+                            </div>
+                            {bounty.userId === user.id && (
+                                <div className="BountyCard-update-delete">
+                                    <button>
+                                        <OpenModalMenuItem
+                                            modalComponent={<UpdateBountyForm bounty={bounty} />}
+                                            itemText="Update Bounty"
+                                        />
+                                    </button>
+                                    <button onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
+                                </div>
+                            )}
+                        </>
                     ))}
                 </div>
             </div>

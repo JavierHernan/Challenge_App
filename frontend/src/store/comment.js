@@ -42,12 +42,9 @@ const deleteComment = (commentId) => {
 //Thunks
 // Fetch all comments by bountyId
 export const fetchComments = (bountyId) => async (dispatch) => {
-    console.log("bountyId, IS THIS WORKING", bountyId)
     const response = await csrfFetch(`/api/comments/${bountyId}`);
-    console.log("RESPONSE in FETCHCOMMENTS", response)
     if (response.ok) {
         const comments = await response.json();
-        console.log("COMMENTS in fetchComments", comments)
         dispatch(setComments(comments));
         return comments;
     }
@@ -68,9 +65,9 @@ export const createComment = (bountyId, commentData) => async (dispatch) => {
     }
 };
 
-// Update an existing bounty
-export const editComment = (commentId, commentData) => async (dispatch) => {
-    const response = await csrfFetch(`/api/comments/${commentId}`, {
+// Update an existing comment
+export const editComment = (bountyId, commentId, commentData) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${bountyId}/${commentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(commentData),
@@ -79,18 +76,22 @@ export const editComment = (commentId, commentData) => async (dispatch) => {
     if (response.ok) {
         const updatedComment = await response.json();
         dispatch(updateComment(updatedComment));
+        console.log("UPDATEDCOMMENT IN API", updatedComment)
+        // dispatch(fetchComments(updatedComment.bountyId)); //ensuring comments are updated
         return updatedComment;
     }
 };
 
-// Delete a bounty
-export const removeComment = (commentId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/comments/${commentId}`, {
+// Delete a comment
+export const removeComment = (bountyId, commentId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${bountyId}/${commentId}`, {
         method: 'DELETE',
     });
 
     if (response.ok) {
+        const { bountyId } = await response.json(); //
         dispatch(deleteComment(commentId));
+        dispatch(fetchComments(bountyId)); //
     }
 };
 
@@ -104,15 +105,11 @@ const commentReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SET_COMMENTS: {
-            console.log("BEFORE newSTATE IN SET COMMENTS", newState)
             newState = { ...state };
-            console.log("AFTER newSTATE IN SET COMMENTS", newState)
-            console.log("ACTION.PAYLOAD", action.payload)
             newState.allComments = action.payload;
             for (let comment of action.payload) {
                 newState.byId[comment.id] = comment;
             }
-            console.log("LAST NEWSTATE", newState)
             return newState;
         }
         case ADD_COMMENT: {
@@ -122,13 +119,20 @@ const commentReducer = (state = initialState, action) => {
             return newState;
         }
         case UPDATE_COMMENT: {
+            // newState = { ...state };
+            // const updatedComment = action.payload;
+            // const newAllComments = newState.allComments.map(comment => 
+            //     comment.id === updatedComment.id ? updatedComment : comment
+            // );
+            // newState.allComments = newAllComments;
+            // newState.byId = { ...newState.byId, [updatedComment.id]: updatedComment };
+            // return newState;
             newState = { ...state };
             const updatedComment = action.payload;
-            const newAllComments = newState.allComments.map(comment => 
+            newState.allComments = newState.allComments.map(comment =>
                 comment.id === updatedComment.id ? updatedComment : comment
             );
-            newState.allComments = newAllComments;
-            newState.byId = { ...newState.byId, [updatedComment.id]: updatedComment };
+            newState.byId[updatedComment.id] = updatedComment;
             return newState;
         }
         case DELETE_COMMENT: {
@@ -144,32 +148,5 @@ const commentReducer = (state = initialState, action) => {
         }
     }
 };
-
-// const commentReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case SET_COMMENTS:
-//             const newState = {};
-//             action.payload.forEach(comment => {
-//                 newState[comment.id] = comment;
-//             });
-//             return newState;
-//         case ADD_COMMENT:
-//             return {
-//                 ...state,
-//                 [action.payload.id]: action.payload
-//             };
-//         case UPDATE_COMMENT:
-//             return {
-//                 ...state,
-//                 [action.payload.id]: action.payload
-//             };
-//         case DELETE_COMMENT:
-//             const stateCopy = { ...state };
-//             delete stateCopy[action.payload];
-//             return stateCopy;
-//         default:
-//             return state;
-//     }
-// };
 
 export default commentReducer;

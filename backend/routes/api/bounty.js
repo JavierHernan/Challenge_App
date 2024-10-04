@@ -79,12 +79,14 @@ router.put(
     validateBounty, // Apply validation
     async (req, res, next) => {
         try {
+            console.log("IS THIS WORKING")
             const { title, description } = req.body;
             const bountyId = req.params.bountyId; // Use req.params.bountyId
             const userId = req.user.id;
 
             // Find the bounty by ID
             const bounty = await Bounty.findByPk(bountyId);
+            console.log("BOUNTY IN API ONE", bounty)
 
             if (!bounty) {
                 return res.status(404).json({ message: "Bounty not found." });
@@ -100,7 +102,7 @@ router.put(
                 title,
                 description
             });
-
+            console.log("BOUNTY IN API", bounty)
             return res.status(200).json(bounty);
         } catch (error) {
             next(error);

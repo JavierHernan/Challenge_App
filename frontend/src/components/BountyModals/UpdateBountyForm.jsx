@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateExistingBounty } from '../../store/bounty';
+import { useModal } from '../../context/Modal';
 
 export default function UpdateBountyForm({bounty}) {
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
     const [title, setTitle] = useState(bounty.title);
     const [description, setDescription] = useState(bounty.description);
 
@@ -20,6 +22,7 @@ export default function UpdateBountyForm({bounty}) {
             description,
         };
         dispatch(updateExistingBounty(bounty.id, updatedBounty));
+        closeModal()
     };
     return (
         <form onSubmit={handleSubmit}>

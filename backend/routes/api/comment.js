@@ -29,7 +29,6 @@ router.get(
                 where: { bountyId },
                 include: { model: User, attributes: ['id', 'username'] } // Include user info if needed
             });
-            console.log("comments in Backend")
 
             if (!comments.length) {
                 return res.status(404).json({ message: "No comments found for this bounty." });
@@ -60,7 +59,14 @@ router.post(
                 userId
             });
 
-            return res.status(201).json(newComment);
+            const createdComment = await Comment.findByPk(newComment.id, {
+                include: [{ model: User, attributes: ['username'] }]
+            });
+            console.log("createdCOMMENT IN BACKEND COMMENT.JS", createdComment)
+
+
+            // return res.status(201).json(newComment);
+            return res.status(201).json(createdComment);
         } catch (error) {
             next(error);
         }
@@ -91,7 +97,14 @@ router.put(
             // Update comment
             await commentToUpdate.update({ comment });
 
-            return res.status(200).json(commentToUpdate);
+            //Refetch the User to overcome loading issue
+            const updatedComment = await Comment.findByPk(commentId, {
+                include: [{ model: User, attributes: ['username'] }]
+            });
+            console.log("UPDATEDCOMMENT IN API", updatedComment)
+            // return res.status(200).json(commentToUpdate);
+            return res.status(200).json(updatedComment);
+
         } catch (error) {
             next(error);
         }
