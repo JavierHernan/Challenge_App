@@ -91,7 +91,7 @@ export const removeComment = (bountyId, commentId) => async (dispatch) => {
     if (response.ok) {
         const { bountyId } = await response.json(); //
         dispatch(deleteComment(commentId));
-        dispatch(fetchComments(bountyId)); //
+        // dispatch(fetchComments(bountyId)); //
     }
 };
 
@@ -140,7 +140,9 @@ const commentReducer = (state = initialState, action) => {
             const commentId = action.payload;
             const newAllCommentsArr = newState.allComments.filter(comment => comment.id !== commentId);
             newState.allComments = newAllCommentsArr;
+            console.log("NEWSTATE IN BACKEND REDUCER/CHECK ALLCOMMENTS", newState)
             delete newState.byId[commentId];
+            console.log("NEWSTATE IN BACKEND REDUCER", newState)
             return newState;
         }
         default: {

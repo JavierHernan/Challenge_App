@@ -116,6 +116,8 @@ router.delete(
     requireAuth, // Require user to be logged in
     async (req, res, next) => {
         try {
+            console.log("Attempting to delete bounty with ID:", req.params.bountyId);
+            console.log("User ID performing the delete:", req.user.id);
             const bountyId = req.params.bountyId; // Use req.params.bountyId
             const userId = req.user.id;
 

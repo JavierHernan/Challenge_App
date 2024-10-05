@@ -75,11 +75,13 @@ export const updateExistingBounty = (bountyId, bountyData) => async (dispatch) =
 };
 // Delete a bounty
 export const removeBounty = (bountyId) => async (dispatch) => {
+    console.log("REMOVEBOUNTY TEST")
     const response = await csrfFetch(`/api/bounty/${bountyId}`, {
         method: 'DELETE',
     });
 
     if (response.ok) {
+        console.log("BOUNTID IN REMOVEBOUNTY THUNK",bountyId)
         dispatch(deleteBounty(bountyId));
     }
 };
@@ -107,6 +109,7 @@ const bountyReducer = (state = initialState, action) => {
                 ),
             };
         case DELETE_BOUNTY:
+            console.log()
             return {
                 ...state,
                 bounties: state.bounties.filter(bounty => bounty.id !== action.payload)

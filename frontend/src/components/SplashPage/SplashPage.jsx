@@ -30,6 +30,7 @@ export default function SplashPage() {
         navigate(`/bounty/new`);  // Navigate to the Create Bounty form
     };
     const handleDelete = (bountyId) => {
+        console.log("Deleting Bounty ID:", bountyId);
         dispatch(removeBounty(bountyId));
     };
 

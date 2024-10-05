@@ -5,7 +5,7 @@ import { useModal } from '../../context/Modal';
 
 export default function UpdateCommentForm({comment}) {
     const dispatch = useDispatch();
-    const { closeModal } = useModal();
+    const { closeModal, setLoadUpdate } = useModal();
     const [updatedComment, setUpdatedComment] = useState(comment.comment);
     // console.log("COMMENT INSIDE UPDATECOMMENTFORM", comment)
 
@@ -14,7 +14,7 @@ export default function UpdateCommentForm({comment}) {
     };
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         try {
             await dispatch(editComment(
                 comment.boungtyId, 
@@ -23,8 +23,9 @@ export default function UpdateCommentForm({comment}) {
             ));
             //refetch comments to deal with User not loading issue 
             //in congruence with backend/routes/api/comment.js updatedComment
-            await dispatch(fetchComments(comment.bountyId)); //<<<<
+            // await dispatch(fetchComments(comment.bountyId)); //<<<<
             // window.location.reload(); //The worst fix ever
+            setLoadUpdate(true)
             closeModal()
         } catch(e) {
             throw(e)

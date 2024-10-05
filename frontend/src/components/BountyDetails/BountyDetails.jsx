@@ -7,16 +7,19 @@ import CommentCard from '../CommentCard/CommentCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import CreateComment from '../CreateComment/CreateComment';
 import { createCompletedBounty } from '../../store/completedBounty';
+import { useModal } from '../../context/Modal';
 
 export default function BountyDetails() {
     const dispatch = useDispatch();
     const { bountyId } = useParams(); // Get the bountyId from the URL
+    const { loadUpdate, setLoadUpdate } = useModal();
     const bounty = useSelector(state => state.bounties.bounties.find(b => b.id === parseInt(bountyId)));
     const comments = useSelector(state => state.comments.allComments);
     const user = useSelector(state => state.session.user);
 
     const [bountyComments, setBountyComments] = useState([]);
     const [load, setLoad] = useState(false)
+    const [loadDelete, setLoadDelete] = useState(false)
     // const comments = useSelector(state => Object.values(state.comments));
 
     useEffect(() => {
@@ -28,7 +31,9 @@ export default function BountyDetails() {
             setLoad(true)
         }
         getData()
-    }, [dispatch, bountyId]);
+        setLoadDelete(false)
+        setLoadUpdate(false)
+    }, [dispatch, bountyId, loadDelete, loadUpdate]);
     
     if (!bounty) return <div>Loading bounty details...</div>;
 
@@ -66,7 +71,7 @@ export default function BountyDetails() {
                     <h2>Comments</h2>
                     {bountyComments.length ? (
                         bountyComments.map(comment => (
-                            <CommentCard key={comment.id} comment={comment} /> // Pass each comment to CommentCard
+                            <CommentCard key={comment.id} comment={comment} setLoadDelete={setLoadDelete} setLoadUpdate={setLoadUpdate} /> // Pass each comment to CommentCard
                         ))
                     ) : (
                         <p>No comments yet. Be the first to comment!</p>
