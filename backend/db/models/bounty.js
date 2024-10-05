@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Bounty.belongsTo(models.User, {foreignKey:"userId", onDelete:"CASCADE"}),
       Bounty.hasMany(models.Comment, {foreignKey: "bountyId", onDelete: "CASCADE"}),
-      Bounty.hasMany(models.CompletedBounty, {foreignKey: "bountyId"})
+      Bounty.hasMany(models.CompletedBounty, {foreignKey: "bountyId", onDelete: "CASCADE"})
     }
   }
   Bounty.init({

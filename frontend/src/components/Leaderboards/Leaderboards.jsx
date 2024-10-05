@@ -6,8 +6,9 @@ import { fetchCompletedBounties } from '../../store/completedBounty';
 export default function Leaderboards() {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
-    const completedBounties = useSelector(state => state.completedBounties);
+    const completedBounties = useSelector(state => state.completedBounty);
     const [leaderboard, setLeaderboard] = useState([]);
+    console.log("COMPLETEDBOUNTIES FIRST", completedBounties)
 
     useEffect(() => {
         const getData = async () => {
@@ -36,20 +37,20 @@ export default function Leaderboards() {
         };
 
         tallyBounties();
-        console.log("TALLYBOUNTIES IN LEADERBOARDS.JSX", tallyBounties)
+        console.log("LEADERBOARD IN USEEFFECT", leaderboard)
     }, [completedBounties, users]);
 
     return (
         <>
             <div>
                 <h1>Leaderboards</h1>
-                {/* <ul>
+                <ul>
                     {leaderboard.map(({ userId, count, username }) => (
                         <li key={userId}>
                             {username}: {count} Completed Bounties
                         </li>
                     ))}
-                </ul> */}
+                </ul>
             </div>
         </>
     )

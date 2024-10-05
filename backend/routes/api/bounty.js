@@ -123,16 +123,21 @@ router.delete(
 
             // Find the bounty by ID
             const bounty = await Bounty.findByPk(bountyId);
-
             if (!bounty) {
                 return res.status(404).json({ message: "Bounty not found." });
             }
-
             // Check if the current user is the owner of the bounty
             if (bounty.userId !== userId) {
                 return res.status(403).json({ message: "You are not authorized to delete this bounty." });
             }
-
+            //grab CompletedBounty and Comment to be deleted
+            const { CompletedBounty, Comment } = require('../../db/models'); 
+            await CompletedBounty.destroy({
+                where: {bountyId}
+            })
+            await Comment.destroy({
+                where: {bountyId}
+            })
             // Delete the bounty
             await bounty.destroy();
 

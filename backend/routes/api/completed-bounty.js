@@ -26,4 +26,26 @@ router.post('/', async (req, res) => {
     return res.json(newCompletedBounty);
 });
 
+router.get('/:bountyId/user/:userId', async (req, res) => {
+    const { bountyId, userId } = req.params;
+
+    try {
+        const completedBounty = await CompletedBounty.findOne({
+            where: {
+                bountyId,
+                userId
+            }
+        });
+
+        if (!completedBounty) {
+            return res.status(404).json({ message: 'No completed bounty found for this user and bounty.' });
+        }
+
+        return res.json(completedBounty);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;

@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBounties } from '../../store/bounty';
 import { fetchComments } from '../../store/comment';
+import { fetchUserCompletedBounty, createCompletedBounty, fetchCompletedBounties, fetchCompletedBountyByBounty } from '../../store/completedBounty';
 import { useNavigate, useParams } from 'react-router-dom';
 import CommentCard from '../CommentCard/CommentCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import CreateComment from '../CreateComment/CreateComment';
-import { createCompletedBounty } from '../../store/completedBounty';
 import { useModal } from '../../context/Modal';
 
 export default function BountyDetails() {
@@ -20,13 +20,14 @@ export default function BountyDetails() {
     const [bountyComments, setBountyComments] = useState([]);
     const [load, setLoad] = useState(false)
     const [loadDelete, setLoadDelete] = useState(false)
+    const [userCompletedBounty, setUserCompletedBounty] = useState(null);
     // const comments = useSelector(state => Object.values(state.comments));
 
     useEffect(() => {
         const getData = async () => {
             await dispatch(fetchBounties()) // Fetch bounties if not already fetched
             const fetchedComments = await dispatch(fetchComments(bountyId))
-            console.log("Fetched Comments: ", fetchedComments);
+            // console.log("Fetched Comments: ", fetchedComments);
             setBountyComments(fetchedComments);
             setLoad(true)
         }
@@ -34,6 +35,23 @@ export default function BountyDetails() {
         setLoadDelete(false)
         setLoadUpdate(false)
     }, [dispatch, bountyId, loadDelete, loadUpdate]);
+
+    useEffect(() => {
+        const getData = async () => {
+            if (user) { //Has user completed bounty???
+                // const completedBounty = await dispatch(fetchUserCompletedBounty(user.id, bountyId));
+                const completedBounties = await dispatch(fetchCompletedBountyByBounty(bountyId));
+                // console.log("COMPLETEDBOUNTIES", completedBounties)
+                const userCompleted = completedBounties.find(bounty => bounty.userId === user.id);
+                // console.log("USERCOMPLETED", userCompleted)
+                if(userCompleted) {
+                    setUserCompletedBounty(userCompleted);
+                }
+                
+            }
+        }
+        getData()
+    }, [dispatch, user, bountyId])
     
     if (!bounty) return <div>Loading bounty details...</div>;
 
@@ -48,7 +66,7 @@ export default function BountyDetails() {
     };
 
     // const bountyCommentsFiltered = comments.filter(comment => comment.bountyId === parseInt(bountyId));
-    console.log("BOUNTYCOMMENTS IN BOUNTYDETAILS", bountyComments)
+    // console.log("BOUNTYCOMMENTS IN BOUNTYDETAILS", bountyComments)
     if(!load) {
         return <h1>Loading...</h1>
     } else {
@@ -57,7 +75,14 @@ export default function BountyDetails() {
                 <div>
                     <h1>{bounty.title}</h1>
                     <p>{bounty.description}</p>
-                    <button onClick={handleBountyCompleted}>Bounty Completed</button>
+                    {/* <button onClick={handleBountyCompleted}>Bounty Completed</button> */}
+                    {user && ( // Ensure the section only appears if a user is logged in
+                        userCompletedBounty?.completed ? (
+                            <p>Congratulations, You Have Completed This Bounty</p>
+                        ) : (
+                            <button onClick={handleBountyCompleted}>Bounty Completed</button>
+                        )
+                    )}
                 </div>
                 <div className="comments-section">
                     {user && (

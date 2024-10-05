@@ -48,22 +48,22 @@ export default function SplashPage() {
                 )}
                 <div className="SplashPage-bounties">
                     {bounties && bounties.map(bounty => (
-                        <>
-                            <div key={bounty.id} className="SplashPage-bounty" onClick={(e) => goToBounty(e, bounty)}>
-                                <BountyCard key={bounty.id} bounty={bounty} userId={user.id} />
-                            </div>
-                            {bounty.userId === user.id && (
-                                <div className="BountyCard-update-delete">
-                                    <button>
-                                        <OpenModalMenuItem
-                                            modalComponent={<UpdateBountyForm bounty={bounty} />}
-                                            itemText="Update Bounty"
-                                        />
-                                    </button>
-                                    <button onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
+                            <div key={bounty.id}>
+                                <div className="SplashPage-bounty" onClick={(e) => goToBounty(e, bounty)}>
+                                    <BountyCard  bounty={bounty} userId={user.id} />
                                 </div>
-                            )}
-                        </>
+                                {bounty.userId === user.id && (
+                                    <div className="BountyCard-update-delete">
+                                        <button>
+                                            <OpenModalMenuItem
+                                                modalComponent={<UpdateBountyForm bounty={bounty} />}
+                                                itemText="Update Bounty"
+                                            />
+                                        </button>
+                                        <button onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
+                                    </div>
+                                )}
+                            </div>
                     ))}
                 </div>
             </div>

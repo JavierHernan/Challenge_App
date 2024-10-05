@@ -14,7 +14,7 @@ export default function CommentCard({comment, setLoadDelete}) {
     const { bountyId } = useParams();
     const currentUser = useSelector(state => state.session.user);
 
-    console.log("COMMENT INSIDE COMMENTCARD", comment)
+    // console.log("COMMENT INSIDE COMMENTCARD", comment)
 
     //handlers
     const handleDelete = async () => {

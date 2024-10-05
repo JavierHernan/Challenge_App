@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      CompletedBounty.belongsTo(models.Bounty, {foreignKey: "bountyId"}), //Might have to include onDelete:"CASCADE"
+      CompletedBounty.belongsTo(models.Bounty, {foreignKey: "bountyId", onDelete: "CASCADE"}), //Might have to include onDelete:"CASCADE"
       CompletedBounty.belongsTo(models.User, {foreignKey: "userId"})
     }
   }
