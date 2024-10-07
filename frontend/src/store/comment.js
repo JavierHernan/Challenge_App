@@ -89,7 +89,7 @@ export const removeComment = (bountyId, commentId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const { bountyId } = await response.json(); //
+        // const { bountyId } = await response.json(); //
         dispatch(deleteComment(commentId));
         // dispatch(fetchComments(bountyId)); //
     }

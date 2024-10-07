@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateExistingBounty } from '../../store/bounty';
 import { useModal } from '../../context/Modal';

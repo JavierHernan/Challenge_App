@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-// import { useDispatch, useSelector } from 'react-redux';
-
-// import { Navigate } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginFormModal() {

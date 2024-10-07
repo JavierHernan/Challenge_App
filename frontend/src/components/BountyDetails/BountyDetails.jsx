@@ -14,21 +14,33 @@ export default function BountyDetails() {
     const { bountyId } = useParams(); // Get the bountyId from the URL
     const { loadUpdate, setLoadUpdate } = useModal();
     const bounty = useSelector(state => state.bounties.bounties.find(b => b.id === parseInt(bountyId)));
-    const comments = useSelector(state => state.comments.allComments);
+    const comments = useSelector(state => state);
     const user = useSelector(state => state.session.user);
 
     const [bountyComments, setBountyComments] = useState([]);
     const [load, setLoad] = useState(false)
     const [loadDelete, setLoadDelete] = useState(false)
     const [userCompletedBounty, setUserCompletedBounty] = useState(null);
+    const [completedBountyByHandler, setCompletedBountyByHandler] = useState(false)
     // const comments = useSelector(state => Object.values(state.comments));
 
     useEffect(() => {
         const getData = async () => {
             await dispatch(fetchBounties()) // Fetch bounties if not already fetched
-            const fetchedComments = await dispatch(fetchComments(bountyId))
+            console.log("MADE IT THIS FAR")
+            console.log("COMMENTS",comments)
+            console.log("bounty?.commentsCount",bounty?.commentsCount)
+            if (bounty?.commentsCount > 0) {  // Adjust this based on your API response structure
+                const fetchedComments = await dispatch(fetchComments(bountyId));
+                console.log("MADE IT THIS FAR2");
+                setBountyComments(fetchedComments);
+            } else {
+                setBountyComments([]);  // Set empty comments if no comments exist
+            }
+            // const fetchedComments = await dispatch(fetchComments(bountyId))
+            console.log("MADE IT THIS FAR2")
             // console.log("Fetched Comments: ", fetchedComments);
-            setBountyComments(fetchedComments);
+            // setBountyComments(fetchedComments);
             setLoad(true)
         }
         getData()
@@ -51,7 +63,7 @@ export default function BountyDetails() {
             }
         }
         getData()
-    }, [dispatch, user, bountyId])
+    }, [dispatch, user, bountyId, completedBountyByHandler])
     
     if (!bounty) return <div>Loading bounty details...</div>;
 
@@ -62,6 +74,7 @@ export default function BountyDetails() {
     const handleBountyCompleted = () => {
         if (user) {
             dispatch(createCompletedBounty({ userId: user.id, bountyId: bounty.id, completed: true }));
+            setCompletedBountyByHandler(true)
         }
     };
 

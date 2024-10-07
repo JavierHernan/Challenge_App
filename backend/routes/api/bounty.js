@@ -6,7 +6,9 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { Bounty } = require('../../db/models')
+const { Bounty } = require('../../db/models');
+const { Comment } = require('../../db/models');
+const { Sequelize } = require('../../db/models');
 
 const validateBounty = [
     check('title')
@@ -36,7 +38,23 @@ router.get(
         // }
         // return res.status(201).json(response)
 
-        const bounties = await Bounty.findAll()
+        // const bounties = await Bounty.findAll()
+        const bounties = await Bounty.findAll({
+            include: [
+                {
+                    model: Comment,
+                    attributes: [] // Don't include actual comment data, just the count
+                }
+            ],
+            attributes: {
+                include: [
+                    [Sequelize.fn('COUNT', Sequelize.col('Comments.id')), 'commentsCount'] // Add the count of comments
+                ]
+            },
+            group: ['Bounty.id'] // Group by Bounty ID to aggregate the count
+        });
+        console.log("BOUNTIES IN API", bounties)
+
         // const bounties = await Bounty.findAll({
         //     attributes: { exclude: ['bountyId'] } // WHY DO I NEED TO EXCLUDE BOUNTYID?????
         //   });

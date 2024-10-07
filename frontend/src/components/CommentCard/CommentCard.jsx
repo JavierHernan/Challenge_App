@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { deleteComment } from '../../store/comment';
 import { removeComment } from '../../store/comment';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import UpdateCommentForm from '../CommentModals/UpdateCommentForm';
-import { fetchComments } from '../../store/comment';
-
 
 export default function CommentCard({comment, setLoadDelete}) {
     const dispatch = useDispatch();

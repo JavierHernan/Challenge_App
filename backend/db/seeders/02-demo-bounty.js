@@ -20,34 +20,34 @@ module.exports = {
     */
     await Bounty.bulkCreate([
       { //id = 1
-        title:  "1 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        title:  "Run 10 kilometer",
+        description:  "Run 10 kilometers. Do so in under 3 hours.",
         userId:  1,
       },
       { //id = 2
-        title:  "1 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        title:  "Do 5000 pushups in 1 week",
+        description:  "YOU HAVE TO SHOCK THE MUSCLE",
         userId:  1,
       },
       { //id = 3
-        title:  "1 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        title:  "Read a book in 1 week",
+        description:  "The book must be no fewer than 300 pages.",
         userId:  1,
       },
       { //id = 4
-        title:  "2 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        title:  "Do 200 pullups in 1 day",
+        description:  "WHO'S GOING TO CARRY THE BOATS",
         userId:  2,
       },
       { //id = 5
-        title:  "2 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        userId:  2,
+        title:  "Squat 225 below parallel",
+        description:  "I'll remove the copyright claim if you can squat 225 below parallel",
+        userId:  3,
       },
       { //id = 6
-        title:  "3 Lorem ipsum",
-        description:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        userId:  3,
+        title:  "Eat a raw liver",
+        description:  "The secret to health is raw liver and paleo",
+        userId:  4,
       }
     ], { validate: true })
   },

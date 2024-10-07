@@ -37,7 +37,7 @@ export const fetchCompletedBounties = () => async (dispatch) => {
 
     if (response.ok) {
         const completedBounties = await response.json();
-        console.log("COMPLETEDBOUNTIES", completedBounties)
+        // console.log("COMPLETEDBOUNTIES", completedBounties)
         dispatch(setCompletedBountiesAction(completedBounties));
     }
 };
@@ -56,11 +56,11 @@ export const fetchCompletedBountyByBounty = (bountyId) => async (dispatch) => {
 
     if (response.ok) {
         const completedBounties = await response.json();
-        console.log("COMPLETEDBOUNTIES IN STORE", completedBounties)
-        console.log("completedBounties[0].id",completedBounties[0].bountyId)
+        // console.log("COMPLETEDBOUNTIES IN STORE", completedBounties)
+        // console.log("completedBounties[0].id",completedBounties[0].bountyId)
         // Filter the completed bounties by bountyId
         const filteredCompletedBounties = completedBounties.filter(bounty => bounty.bountyId == bountyId);
-        console.log("FILTEREDCOMPLETEDBOUNTIES", filteredCompletedBounties)
+        // console.log("FILTEREDCOMPLETEDBOUNTIES", filteredCompletedBounties)
         dispatch(setCompletedBountiesByBountyAction(filteredCompletedBounties));
         return filteredCompletedBounties;
     }

@@ -1,11 +1,3 @@
-// import { useEffect } from 'react';
-import { useDispatch} from 'react-redux';
-// import { fetchBounties } from '../../store/bounty';
-// import { useNavigate } from 'react-router-dom';
-// import CommentCard from '../CommentCard/CommentCard';
-// import { removeBounty } from '../../store/bounty';
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
-// import UpdateBountyForm from '../BountyModals/UpdateBountyForm';
 
 
 export default function BountyCard({bounty}) {

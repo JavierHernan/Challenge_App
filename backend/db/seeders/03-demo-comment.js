@@ -20,53 +20,53 @@ module.exports = {
     */
     await Comment.bulkCreate([
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  2,
+        comment:  "DONE IN 30 MINUTES",
+        userId:  2, //David Goggins
         bountyId:  1,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  3,
+        comment:  "I gotta work on my cardio",
+        userId:  3, //Samuyil Hyde
         bountyId:  1,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  2,
+        comment:  "DONE IN 1 DAY",
+        userId:  2, //David Goggins
         bountyId:  2,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  3,
+        comment:  "My cardio D:",
+        userId:  3, //Samuyil Hyde
         bountyId:  2,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  2,
+        comment:  "DONE IN 1 SECOND",
+        userId:  2, //David Goggins
         bountyId:  3,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  3,
+        comment:  "Audiobooked. It counts",
+        userId:  3, //Samuyil Hyde
         bountyId:  3,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  1,
+        comment:  "STAY HARD",
+        userId:  1, //Demo
         bountyId:  4,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  1,
+        comment:  "He can't keep getting away with it",
+        userId:  1, //Demo
         bountyId:  5,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  3,
+        comment:  "I don't remember doing this",
+        userId:  3, //Samuyil Hyde
         bountyId:  5,
       },
       {
-        comment:  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        userId:  1,
+        comment:  "Needs salt",
+        userId:  1, //Demo
         bountyId:  6,
       },
     ], { validate: true });
