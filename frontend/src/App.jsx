@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import LoginFormPage from './components/LoginFormPage/LoginFromPage';
+// import LoginFormPage from './components/LoginFormPage/LoginFormPage';
+// import SignupFormPage from './components/SignupFormPage/SignupFormPage';
+import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
+import SplashPage from './components/SplashPage/SplashPage';
+import Leaderboards from './components/Leaderboards/Leaderboards';
+import BountyDetails from './components/BountyDetails/BountyDetails';
+import CreateBounty from './components/CreateBounty/CreateBounty';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -16,6 +22,7 @@ function Layout() {
 
   return (
     <>
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && <Outlet />}
     </>
   );
@@ -27,11 +34,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <SplashPage />
       },
       {
-        path: '/login',
-        element: <LoginFormPage />
+        path: '/leaderboards',
+        element: <Leaderboards />
+      },
+      {
+        path: '/bounty/:bountyId',
+        element: <BountyDetails />
+      },
+      {
+        path: '/bounty/new',
+        element: <CreateBounty />
       }
     ]
   }

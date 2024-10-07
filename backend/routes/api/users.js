@@ -51,4 +51,13 @@ router.post(
     }
   );
 
+router.get('/', 
+  async (req, res) => {
+  const users = await User.findAll({
+      attributes: ['id', 'username'] // Modify attributes as needed
+  });
+  console.log("USERS IN USERS.JS BACKEND")
+  return res.json(users);
+});
+
 module.exports = router;
