@@ -24,9 +24,10 @@ export const fetchUsers = () => async (dispatch) => {
 const initialState = {};
 
 const userReducer = (state = initialState, action) => {
+    let newState = {}
     switch (action.type) {
         case SET_USERS:
-            const newState = {};
+            // const newState = {};
             action.users.forEach(user => {
                 newState[user.id] = user;
             });
@@ -35,5 +36,19 @@ const userReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+// const userReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case SET_USERS: {
+//             const newState = {};
+//             action.users.forEach(user => {
+//                 newState[user.id] = user;
+//             });
+//             return newState;
+//         }
+//         default:
+//             return state;
+//     }
+// };
 
 export default userReducer;

@@ -8,10 +8,7 @@ export default function CreateBounty() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currentUser = useSelector(state => state.session.user);
-    if (!currentUser) {
-        navigate('/');
-        return null;
-    }
+    
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [errors, setErrors] = useState([]);
@@ -24,6 +21,11 @@ export default function CreateBounty() {
             setIsButtonDisabled(true);
         }
     }, [title, description]);
+
+    if (!currentUser) {
+        navigate('/');
+        return null;
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault();

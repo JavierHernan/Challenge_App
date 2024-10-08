@@ -71,17 +71,19 @@ export const fetchCompletedBountyByBounty = (bountyId) => async (dispatch) => {
 const initialState = {};
 
 const completedBountyReducer = (state = initialState, action) => {
+    let newState = {};
+    let bountyState = {};
     switch (action.type) {
         case CREATE_COMPLETED_BOUNTY:
             return { ...state, [action.completedBounty.id]: action.completedBounty };
         case SET_COMPLETED_BOUNTIES:
-            const newState = {};
+            // const newState = {};
             action.completedBounties.forEach(bounty => {
                 newState[bounty.id] = bounty;
             });
             return newState;
         case SET_COMPLETED_BOUNTIES_BY_BOUNTY: // Add new case for fetching by bountyId
-            const bountyState = {};
+            // const bountyState = {};
             action.completedBounties.forEach(bounty => {
                 bountyState[bounty.id] = bounty;
             });
@@ -90,5 +92,28 @@ const completedBountyReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+// const completedBountyReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case CREATE_COMPLETED_BOUNTY:
+//             return { ...state, [action.completedBounty.id]: action.completedBounty };
+//         case SET_COMPLETED_BOUNTIES: {
+//             let newState = {};
+//             action.completedBounties.forEach(bounty => {
+//                 newState[bounty.id] = bounty;
+//             });
+//             return newState;
+//         }
+//         case SET_COMPLETED_BOUNTIES_BY_BOUNTY: {
+//             let bountyState = {};
+//             action.completedBounties.forEach(bounty => {
+//                 bountyState[bounty.id] = bounty;
+//             });
+//             return bountyState;
+//         }
+//         default:
+//             return state;
+//     }
+// };
 
 export default completedBountyReducer;
