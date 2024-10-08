@@ -46,7 +46,15 @@ export default function BountyDetails() {
         getData()
         setLoadDelete(false)
         setLoadUpdate(false)
-    }, [dispatch, bountyId, loadDelete, loadUpdate]);
+    }, [
+        dispatch,
+        bountyId,
+        loadDelete,
+        loadUpdate,
+        bounty?.commentsCount, // Add missing dependencies
+        comments,
+        setLoadUpdate,
+    ]);
 
     useEffect(() => {
         const getData = async () => {
