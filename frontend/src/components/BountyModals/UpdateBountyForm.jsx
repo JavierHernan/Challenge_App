@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateExistingBounty } from '../../store/bounty';
 import { useModal } from '../../context/Modal';

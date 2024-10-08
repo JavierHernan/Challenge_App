@@ -41,7 +41,8 @@ export const fetchCompletedBounties = () => async (dispatch) => {
         dispatch(setCompletedBountiesAction(completedBounties));
     }
 };
-export const fetchUserCompletedBounty = (userId, bountyId) => async (dispatch) => {
+// export const fetchUserCompletedBounty = (userId, bountyId) => async (dispatch) => {
+export const fetchUserCompletedBounty = (userId, bountyId) => async () => {
     const response = await csrfFetch(`/api/completed-bounty/${bountyId}/user/${userId}`);
 
     if (response.ok) {

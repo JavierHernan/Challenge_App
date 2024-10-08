@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { editComment, fetchComments } from '../../store/comment';
+import { editComment } from '../../store/comment';
 import { useModal } from '../../context/Modal';
 
 export default function UpdateCommentForm({comment}) {
@@ -15,21 +15,19 @@ export default function UpdateCommentForm({comment}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await dispatch(editComment(
-                comment.boungtyId, 
-                comment.id, 
-                { comment: updatedComment }
-            ));
-            //refetch comments to deal with User not loading issue 
-            //in congruence with backend/routes/api/comment.js updatedComment
-            // await dispatch(fetchComments(comment.bountyId)); //<<<<
-            // window.location.reload(); //The worst fix ever
-            setLoadUpdate(true)
-            closeModal()
-        } catch(e) {
-            throw(e)
-        }
+
+        await dispatch(editComment(
+            comment.boungtyId,
+            comment.id,
+            { comment: updatedComment }
+        ));
+        //refetch comments to deal with User not loading issue 
+        //in congruence with backend/routes/api/comment.js updatedComment
+        // await dispatch(fetchComments(comment.bountyId)); //<<<<
+        // window.location.reload(); //The worst fix ever
+        setLoadUpdate(true)
+        closeModal()
+
     };
 
     return (

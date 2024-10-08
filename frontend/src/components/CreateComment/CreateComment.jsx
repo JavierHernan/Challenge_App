@@ -12,27 +12,25 @@ export default function CreateComment({bountyId, onCommentCreated}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // e.stopPropagation();
-        try {
-            const newComment = {
-                comment,
-                bountyId
-            };
-    
-            const result = await dispatch(createComment(
-                bountyId, 
-                newComment
-            ));
-            
-            if (result.errors) {
-                setErrors(result.errors);
-            } else {
-                onCommentCreated(result)
-                await dispatch(fetchComments(bountyId))
-                closeModal(); // Close modal on successful comment submission
-            }
-        } catch(e) {
-            throw(e)
-        } 
+
+        const newComment = {
+            comment,
+            bountyId
+        };
+
+        const result = await dispatch(createComment(
+            bountyId,
+            newComment
+        ));
+
+        if (result.errors) {
+            setErrors(result.errors);
+        } else {
+            onCommentCreated(result)
+            await dispatch(fetchComments(bountyId))
+            closeModal(); // Close modal on successful comment submission
+        }
+
     };
     return(
         <>
