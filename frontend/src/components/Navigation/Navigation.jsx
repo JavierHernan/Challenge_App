@@ -15,37 +15,42 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
-        <ProfileButton user={sessionUser} />
-      </li>
+      <div>
+        <ProfileButton className="profile-button" user={sessionUser} />
+      </div>
     );
   } else {
     sessionLinks = (
-        <>
-            <li>
-                <OpenModalButton
-                    buttonText="Log In"
-                    modalComponent={<LoginFormModal />}
-                />
-            </li>
-            <li>
-                <OpenModalButton
-                    buttonText="Sign Up"
-                    modalComponent={<SignupFormModal />}
-                />
-            </li>
-        </>
+      <>
+        <div className='login-signup-container'>
+          <OpenModalButton
+            className='login-signup-buttons'
+            buttonText="Log In"
+            modalComponent={<LoginFormModal />}
+          />
+          <OpenModalButton
+            className='login-signup-buttons'
+            buttonText="Sign Up"
+            modalComponent={<SignupFormModal />}
+          />
+        </div>
+      </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Bounties</NavLink>
-        <NavLink to="/leaderboards">Leaderboards</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
+    <>
+      <div className='navigation-container'>
+        <div className='nav-links'>
+          <NavLink className="nav-text bounties" to="/">Bounties</NavLink>
+          <NavLink className="nav-text leaderboards" to="/leaderboards">Leaderboards</NavLink>
+        </div>
+
+        {isLoaded && sessionLinks}
+
+      </div>
+      <hr className='line-break' ></hr>
+    </>
   );
 }
 

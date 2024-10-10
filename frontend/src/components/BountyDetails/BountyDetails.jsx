@@ -52,7 +52,7 @@ export default function BountyDetails() {
         loadDelete,
         loadUpdate,
         bounty?.commentsCount, // Add missing dependencies
-        comments,
+        // comments,
         setLoadUpdate,
     ]);
 
