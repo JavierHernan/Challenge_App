@@ -1,0 +1,43 @@
+.login-form {
+    /* border: 1px solid black; */
+    border: 3px solid #8D6A9F;
+    background-color: #C5CBD3;
+    border-radius: 5px;
+    /* height: 230px; */
+    width: 400px;
+}
+.login-form h1 {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+}
+.login-email-input {
+    /* border: 1px solid black; */
+}
+.login-form label {
+    /* border: 1px solid black; */
+    display: flex;
+    /* width: 100%; */
+    margin: 0px 10px 20px 10px;
+    justify-content: space-between;
+}
+.login-form label input {
+    width: 50%;
+}
+.login-form p {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+}
+.login-button-container {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.login-button-container button {
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}

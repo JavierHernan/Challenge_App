@@ -24,19 +24,20 @@ function LoginFormModal() {
         });
     };
 
-    const demoSubmit = (e) => {
-      e.preventDefault();
-      return dispatch(sessionActions.login({ email: 'demo@user.io', password: 'password' }))
-        .then(closeModal);
-    }
+    // const demoSubmit = (e) => {
+    //   e.preventDefault();
+    //   return dispatch(sessionActions.login({ email: 'demo@user.io', password: 'password' }))
+    //     .then(closeModal);
+    // }
   
     return (
       <>
-        <h1>Log In</h1>
-        <form onSubmit={handleSubmit}>
+        <form className='login-form' onSubmit={handleSubmit}>
+          <h1>Log In</h1>
           <label>
             Username or Email
             <input
+              className='login-email-input'
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
@@ -55,10 +56,12 @@ function LoginFormModal() {
           {errors.credential && (
             <p>{errors.credential}</p>
           )}
-          <button type="submit">Log In</button>
-          <div className='demo-user'>
-            <a onClick={(e) => demoSubmit(e)}>Demo User</a>
+          <div className='login-button-container'>
+            <button type="submit">Log In</button>
           </div>
+          {/* <div className='demo-user'>
+            <a onClick={(e) => demoSubmit(e)}>Demo User</a>
+          </div> */}
         </form>
       </>
     );
