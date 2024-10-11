@@ -73,7 +73,8 @@ export default function SplashPage() {
                         bounties.filter(bounty => bounty !== null).map(bounty => ( //filter for existing bounties and map
                             <div className="SplashPage-bounty" key={bounty.id}>
                                 <div onClick={(e) => goToBounty(e, bounty)}>
-                                    <BountyCard bounty={bounty} userId={user ? user.id : null} />
+                                    {/* <BountyCard bounty={bounty} userId={user ? user.id : null} /> */}
+                                    <BountyCard bounty={bounty} />
                                 </div>
                                 {user && bounty.userId === user.id && ( //does this bounty belong to current user? if so, show update/delete button
                                     <div className="BountyCard-update-delete">
