@@ -1,0 +1,42 @@
+/* .leaderboards-container {
+    border: 1px solid black;
+} */
+.leaderboards-container h1 {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+}
+/* .leaderboards-container ul li {
+    border: 1px solid black;
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+} */
+.leaderboards-greater-container {
+    display: flex;
+    justify-content: center;
+}
+/* .leaderboards-text {
+    border: 1px solid black;
+} */
+.leaderboards-users-container {
+    width: 30%;
+}
+.leaderboards-individual {
+    /* border: 1px solid black; */
+    background-color: #f0f0f0;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* .leaderbaords-username {
+    border: 1px solid black;
+}
+.leaderboards-count {
+    border: 1px solid black;
+} */

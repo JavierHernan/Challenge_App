@@ -47,7 +47,7 @@ export default function SplashPage() {
                         Create a Bounty
                     </button>
                 )}
-                <div className="SplashPage-bounties">
+                <div className="bounties-section">
                     {bounties && bounties.map(bounty => (
                             <div className="SplashPage-bounty" key={bounty.id}>
                                 <div onClick={(e) => goToBounty(e, bounty)}>

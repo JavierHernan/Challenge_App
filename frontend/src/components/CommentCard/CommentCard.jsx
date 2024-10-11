@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeComment } from '../../store/comment';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import UpdateCommentForm from '../CommentModals/UpdateCommentForm';
+import './CommentCard.css'
 
 export default function CommentCard({comment, setLoadDelete}) {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ export default function CommentCard({comment, setLoadDelete}) {
                             bountyId={bountyId}
                         />
                     </button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button className='CommentCard-delete-button' onClick={handleDelete}>Delete</button>
                 </div>
             )}
             </div>

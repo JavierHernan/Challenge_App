@@ -95,27 +95,30 @@ export default function BountyDetails() {
         return (
             <>
                 <div>
-                    <h1>{bounty.title}</h1>
-                    <p>{bounty.description}</p>
+                    <div className='BountyDetails-title'>
+                        <h1>{bounty.title}</h1>
+                        <p>{bounty.description}</p>
+                    </div>
+
                     {/* <button onClick={handleBountyCompleted}>Bounty Completed</button> */}
                     {user && ( // Ensure the section only appears if a user is logged in
                         userCompletedBounty?.completed ? (
-                            <p>Congratulations, You Have Completed This Bounty</p>
+                            <p className='bounty-details-switch'>Congratulations, You Have Completed This Bounty</p>
                         ) : (
-                            <button onClick={handleBountyCompleted}>Bounty Completed</button>
+                            <button className='bounty-details-switch' onClick={handleBountyCompleted}>Bounty Completed</button>
                         )
                     )}
                 </div>
                 <div className="comments-section">
+                    <h2>Comments</h2>
                     {user && (
-                        <button>
+                        <button className='create-comment-button'>
                             <OpenModalMenuItem
                             itemText="Create a Comment"
                             modalComponent={<CreateComment bountyId={bountyId} onCommentCreated={handleCommentCreated} />}
                         />
                         </button>
                     )}
-                    <h2>Comments</h2>
                     {bountyComments.length ? (
                         bountyComments.map(comment => (
                             <CommentCard key={comment.id} comment={comment} setLoadDelete={setLoadDelete} setLoadUpdate={setLoadUpdate} /> // Pass each comment to CommentCard

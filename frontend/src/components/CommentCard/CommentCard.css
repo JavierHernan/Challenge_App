@@ -1,0 +1,31 @@
+.comment-card {
+    /* border: 1px solid black; */
+    width: 55%;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    border: none;
+}
+.comment-card p {
+    word-wrap: break-word;  /* Ensures long words wrap onto the next line */
+    word-break: break-word;  /* Ensures long words break properly */
+    overflow-wrap: break-word;  /* Allows text to wrap to fit the container */
+    /* max-height: 200px;  Optional: limit the max height to avoid overflow */
+    overflow: hidden;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+.comment-actions button {
+    font-size: 16px;
+    cursor: pointer;
+}
+.comment-actions button li {
+    list-style-type: none;
+}
+.CommentCard-delete-button {
+    margin-left: 10px;
+}

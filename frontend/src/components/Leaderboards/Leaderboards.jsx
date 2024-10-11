@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../store/user';
 import { fetchCompletedBounties } from '../../store/completedBounty';
+import './Leaderboards.css'
 
 export default function Leaderboards() {
     const dispatch = useDispatch();
@@ -42,15 +43,24 @@ export default function Leaderboards() {
 
     return (
         <>
-            <div>
+            <div className='leaderboards-container'>
                 <h1>Leaderboards</h1>
-                <ul>
-                    {leaderboard.map(({ userId, count, username }) => (
-                        <li key={userId}>
-                            {username}: {count} Completed Bounties
-                        </li>
-                    ))}
-                </ul>
+                <div className='leaderboards-greater-container'>
+                    {/* <div className='leaderboards-text'>
+                        <div>Challengers</div>
+                        <div>Completions</div>
+                    </div> */}
+                    
+                    <div className='leaderboards-users-container'>
+                        {leaderboard.map(({ userId, count, username }) => (
+                            <div className='leaderboards-individual' key={userId}>
+                                <div className='leaderbaords-username'>{username}</div>
+                                <div className='leaderboards-count'>{count}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
             </div>
         </>
     )
