@@ -54,7 +54,7 @@ export default function SplashPage() {
                                 <div onClick={(e) => goToBounty(e, bounty)}>
                                     <BountyCard bounty={bounty} userId={user ? user.id : null} />
                                 </div>
-                                {user !== null && bounty.userId === user.id && (
+                                {user && bounty.userId === user.id && (
                                     <div className="BountyCard-update-delete">
                                         <button>
                                             <OpenModalMenuItem
