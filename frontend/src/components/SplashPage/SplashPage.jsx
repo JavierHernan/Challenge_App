@@ -13,6 +13,7 @@ export default function SplashPage() {
     const bounties = useSelector(state => state.bounties.bounties);
     console.log("BOUNTIES SPLASHPAGE", bounties, )
     const user = useSelector(state => state.session.user);
+    console.log("USER SPLASHPAGE", user)
     const navigate = useNavigate();
 
     useEffect(() => {
