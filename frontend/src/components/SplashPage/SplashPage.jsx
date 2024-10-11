@@ -11,8 +11,8 @@ export default function SplashPage() {
     const dispatch = useDispatch();
     // const bounties = useSelector(state => state.bounties.bounties)
     const bounties = useSelector(state => state.bounties.bounties);
+    console.log("BOUNTIES SPLASHPAGE", bounties, )
     const user = useSelector(state => state.session.user);
-    console.log("bounties", bounties)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -68,13 +68,13 @@ export default function SplashPage() {
                     ))}
                 </div> */}
                 <div className="bounties-section">
-                    {bounties && bounties.length > 0 ? (
-                        bounties.filter(bounty => bounty !== null).map(bounty => (
+                    {bounties && bounties.length > 0 ? ( //are there bounties?
+                        bounties.filter(bounty => bounty !== null).map(bounty => ( //filter for existing bounties and map
                             <div className="SplashPage-bounty" key={bounty.id}>
                                 <div onClick={(e) => goToBounty(e, bounty)}>
                                     <BountyCard bounty={bounty} userId={user ? user.id : null} />
                                 </div>
-                                {user && bounty.userId === user.id && (
+                                {user && bounty.userId === user.id && ( //does this bounty belong to current user? if so, show update/delete button
                                     <div className="BountyCard-update-delete">
                                         <button>
                                             <OpenModalMenuItem
