@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateExistingBounty } from '../../store/bounty';
 import { useModal } from '../../context/Modal';
+import './UpdateBounty.css';
 
 export default function UpdateBountyForm({bounty}) {
     const dispatch = useDispatch();
@@ -24,9 +25,9 @@ export default function UpdateBountyForm({bounty}) {
         closeModal()
     };
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='update-bounty-form' onSubmit={handleSubmit}>
             <h2>Update Bounty</h2>
-            <label>
+            <label className='update-bounty-form-input-container'>
                 Title:
                 <input
                     type="text"
@@ -41,7 +42,9 @@ export default function UpdateBountyForm({bounty}) {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
-            <button type="submit" disabled={!isValidForm()}>Update</button>
+            <div className='update-bounty-form-update-button'>
+                <button type="submit" disabled={!isValidForm()}>Update</button>
+            </div>
         </form>
     )
 }

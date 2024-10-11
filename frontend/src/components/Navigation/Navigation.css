@@ -37,8 +37,22 @@
     height: 45%;
 }
 
-.profile-button {
-    border: 3px solid yellow;
+.prof-button-container {
+    /* border: 1px solid black; */
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.prof-button-container button {
+    /* border: 1px solid black; */
+    font-size: 14px;
+    padding: 10px 20px; 
+    background-color: #f0f0f0; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    margin-right: 45px;
 }
 .login-signup-container {
     /* border: 1px solid black; */
@@ -60,8 +74,11 @@
     color: #f0f0f0;
 }
 
+
+
 .line-break {
-    width: 100%;
+    width: 98%;
     border: 1px solid #8D6A9F;
+    margin: 0px 1% 0px 1%;
 }
 

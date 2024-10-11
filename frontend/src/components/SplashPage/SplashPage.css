@@ -1,0 +1,41 @@
+.SplashPage {
+    /* border: 1px solid black; */
+}
+.SplashPage-title {
+    /* border: 1px solid black; */
+    padding-left: 40px;
+}
+.create-bounty-button {
+    /* border: 1px solid black; */
+    margin-left: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.SplashPage-bounties {
+    /* border: 1px solid black; */
+    padding-left: 40px;
+}
+.SplashPage-bounty {
+    /* border: 2px dotted red; */
+    width: 55%;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.BountyCard-update-delete {
+    display: flex;
+    justify-content: flex-end;
+}
+.BountyCard-update-delete button {
+    /* border: 2px solid white; */
+    font-size: 16px;
+    cursor: pointer;
+}
+.BountyCard-update-delete button li {
+    list-style-type: none;
+}
+.BountyCard-delete-button {
+    margin-left: 10px;
+}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editComment } from '../../store/comment';
 import { useModal } from '../../context/Modal';
+import './UpdateComment.css'
 
 export default function UpdateCommentForm({comment}) {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function UpdateCommentForm({comment}) {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className='update-comment-form' onSubmit={handleSubmit}>
                 <h2>Update Comment</h2>
                 <label>
                     Comment:
@@ -41,7 +42,9 @@ export default function UpdateCommentForm({comment}) {
                         onChange={(e) => setUpdatedComment(e.target.value)}
                     />
                 </label>
-                <button type="submit" disabled={!isValidForm()}>Update</button>
+                <div className='update-comment-form-update-button'>
+                    <button type="submit" disabled={!isValidForm()}>Update</button>
+                </div>
             </form>
         </>
     )

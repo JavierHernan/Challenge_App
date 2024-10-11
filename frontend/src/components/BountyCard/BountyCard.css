@@ -1,0 +1,14 @@
+.BountyCard {
+    /* border: 1px solid yellow; */
+    width: 100%;
+    box-sizing: border-box;  /* Ensure padding is included in the element's total width and height */
+    overflow: hidden;
+}
+.BountyCard p {
+    /* margin: 0; */
+    word-wrap: break-word;  /* Ensures long words wrap onto the next line */
+    word-break: break-word;  /* Ensures long words break properly */
+    overflow-wrap: break-word;  /* Allows text to wrap to fit the container */
+    /* max-height: 200px;  Optional: limit the max height to avoid overflow */
+    overflow: hidden;  /* Hide overflow if text exceeds max-height */
+}

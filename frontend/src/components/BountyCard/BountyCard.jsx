@@ -1,4 +1,4 @@
-
+import './BountyCard.css'
 
 export default function BountyCard({bounty}) {
     // const dispatch = useDispatch();
@@ -8,9 +8,9 @@ export default function BountyCard({bounty}) {
     // };
     return (
         <div className="BountyCard">
-        <h3>{bounty.title}</h3>
-        <p>{bounty.description}</p>
-        {/* {bounty.userId === userId && ( // Only show buttons for the owner
+            <h3>{bounty.title}</h3>
+            <p>{bounty.description}</p>
+            {/* {bounty.userId === userId && ( // Only show buttons for the owner
             <div className="BountyCard-update-delete">
                 <button>
                     <OpenModalMenuItem
@@ -21,6 +21,6 @@ export default function BountyCard({bounty}) {
                 <button onClick={handleDelete}>Delete Bounty</button>
             </div>
         )} */}
-    </div>
+        </div>
     )
 }

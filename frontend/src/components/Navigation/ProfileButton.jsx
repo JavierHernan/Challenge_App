@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../store/session';
+import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,10 +42,10 @@ function ProfileButton({ user }) {
         <FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
-        <li>{user.email}</li>
-        <li>
+        <li className='prof'>{user.username}</li>
+        {/* <li>{user.firstName} {user.lastName}</li> */}
+        <li className='prof'>{user.email}</li>
+        <li className='prof-logout'>
           <button onClick={logout}>Log Out</button>
         </li>
       </ul>

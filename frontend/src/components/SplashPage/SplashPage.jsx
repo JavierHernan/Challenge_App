@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BountyCard from '../BountyCard/BountyCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import UpdateBountyForm from '../BountyModals/UpdateBountyForm';
+import './SplashPage.css'
 
 export default function SplashPage() {
     const dispatch = useDispatch();
@@ -48,9 +49,9 @@ export default function SplashPage() {
                 )}
                 <div className="SplashPage-bounties">
                     {bounties && bounties.map(bounty => (
-                            <div key={bounty.id}>
-                                <div className="SplashPage-bounty" onClick={(e) => goToBounty(e, bounty)}>
-                                    <BountyCard  bounty={bounty} userId={user ? user.id : null} />
+                            <div className="SplashPage-bounty" key={bounty.id}>
+                                <div onClick={(e) => goToBounty(e, bounty)}>
+                                    <BountyCard bounty={bounty} userId={user ? user.id : null} />
                                 </div>
                                 {user && bounty.userId === user.id && (
                                     <div className="BountyCard-update-delete">
@@ -60,7 +61,7 @@ export default function SplashPage() {
                                                 itemText="Update Bounty"
                                             />
                                         </button>
-                                        <button onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
+                                        <button className='BountyCard-delete-button' onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
                                     </div>
                                 )}
                             </div>

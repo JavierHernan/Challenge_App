@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createComment, fetchComments } from '../../store/comment';
 import { useModal } from '../../context/Modal';
+import './CreateComment.css'
 
 export default function CreateComment({bountyId, onCommentCreated}) {
     const [comment, setComment] = useState('');
@@ -34,7 +35,7 @@ export default function CreateComment({bountyId, onCommentCreated}) {
     };
     return(
         <>
-            <form onSubmit={handleSubmit}>
+            <form className='create-comment-form' onSubmit={handleSubmit}>
                 <h2>Leave a Comment</h2>
                 {errors.length > 0 && (
                     <ul>
@@ -48,7 +49,9 @@ export default function CreateComment({bountyId, onCommentCreated}) {
                     onChange={(e) => setComment(e.target.value)}
                     required
                 />
-                <button type="submit">Submit Comment</button>
+                <div className='create-comment-form-update-button'>
+                    <button type="submit">Submit Comment</button>
+                </div>
             </form>
         </>
     )

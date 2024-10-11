@@ -8,6 +8,7 @@ import CommentCard from '../CommentCard/CommentCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import CreateComment from '../CreateComment/CreateComment';
 import { useModal } from '../../context/Modal';
+import './BountyDetails.css';
 
 export default function BountyDetails() {
     const dispatch = useDispatch();
