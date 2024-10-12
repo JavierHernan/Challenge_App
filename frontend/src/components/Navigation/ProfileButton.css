@@ -1,8 +1,11 @@
+.hidden {
+    display: none;
+}
 .profile-dropdown {
     position: absolute;
     top: 5%;
     right: 3%;
-    /* z-index: 1000; */
+    z-index: 1000;
     background-color: #C5CBD3;
     /* width: 146px;
     height: 15%; */
