@@ -1,0 +1,48 @@
+/* .CreateBounty-form {
+    border: 1px solid black;
+} */
+.CreateBounty-form h2 {
+    /* border: 1px solid black; */
+    margin-left: 40px;
+}
+
+/* .CreateBounty-form ul {
+    border: 1px solid black;
+} */
+.CreateBounty-form label {
+    /* border: 1px solid black; */
+    display: flex;
+    margin-left: 40px;
+    width: 50%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+.CreateBounty-title-label {
+    margin-bottom: 15px;
+}
+.CreateBounty-description-label {
+    /* border: 1px solid black; */
+    height: 170px;
+}
+.CreateBounty-form label input {
+    /* border: 1px solid black; */
+    width: 240px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.CreateBounty-form label textarea {
+    /* border: 1px solid black; */
+    width: 350px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.CreateBounty-submit-container {
+    /* border: 1px solid black; */
+    padding-left: 40px;
+}
+.CreateBounty-submit-container button {
+    font-size: 25px;
+    border: none;
+}

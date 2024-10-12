@@ -24,11 +24,11 @@ function LoginFormModal() {
         });
     };
 
-    // const demoSubmit = (e) => {
-    //   e.preventDefault();
-    //   return dispatch(sessionActions.login({ email: 'demo@user.io', password: 'password' }))
-    //     .then(closeModal);
-    // }
+    const demoSubmit = (e) => {
+      e.preventDefault();
+      return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+        .then(closeModal);
+    }
   
     return (
       <>
@@ -59,9 +59,9 @@ function LoginFormModal() {
           <div className='login-button-container'>
             <button type="submit">Log In</button>
           </div>
-          {/* <div className='demo-user'>
-            <a onClick={(e) => demoSubmit(e)}>Demo User</a>
-          </div> */}
+          <div className='demo-user'>
+            <button type="button" onClick={demoSubmit}>Demo User</button>
+          </div>
         </form>
       </>
     );

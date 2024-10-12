@@ -41,3 +41,15 @@
     border: none;
     padding: 10px;
 }
+.demo-user {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.demo-user button {
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}

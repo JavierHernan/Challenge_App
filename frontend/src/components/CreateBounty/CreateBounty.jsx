@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createBounty } from '../../store/bounty';
 import { useSelector } from 'react-redux';
+import './CreateBounty.css'
 
 export default function CreateBounty() {
     const dispatch = useDispatch();
@@ -47,12 +48,12 @@ export default function CreateBounty() {
     };
     return (
         <>
+            <form className='CreateBounty-form' onSubmit={handleSubmit}>
             <h2>Create a New Bounty</h2>
-            <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, index) => <li key={index}>{error}</li>)}
                 </ul>
-                <label>
+                <label className='CreateBounty-title-label'>
                     Title:
                     <input 
                         type="text" 
@@ -61,7 +62,7 @@ export default function CreateBounty() {
                         maxLength="50"
                     />
                 </label>
-                <label>
+                <label className='CreateBounty-description-label'>
                     Description:
                     <textarea 
                         value={description} 
@@ -69,7 +70,9 @@ export default function CreateBounty() {
                         maxLength="500"
                     />
                 </label>
-                <button type="submit" disabled={isButtonDisabled}>Create Bounty</button>
+                <div className='CreateBounty-submit-container'>
+                    <button type="submit" disabled={isButtonDisabled}>Create Bounty</button>
+                </div>
             </form>
         </>
     )
