@@ -16,20 +16,26 @@ function ProfileButton({ user }) {
     // setShowMenu(!showMenu);
     console.log("TOGGLEMENU")
     setShowMenu((prevShowMenu) => !prevShowMenu);
+    console.log("toggleMenu FUNCTION showMenu", showMenu)
   };
 
   useEffect(() => {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
+      console.log("Click event triggered:", e.target);
+      console.log("ulRef.current:", ulRef.current);
       if (ulRef.current && !ulRef.current.contains(e.target)) {
+        console.log("Closing menu");
         setShowMenu(false);
+        console.log("CLOSEMENU USEEFFECT showMenu", showMenu)
       }
     };
     console.log("BEFORE EVENT")
     document.addEventListener('click', closeMenu);
     console.log("AFTER EVENT")
     return () => {
+      console.log("Removing event listener");
       document.removeEventListener('click', closeMenu);
     }
   }, [showMenu]);
