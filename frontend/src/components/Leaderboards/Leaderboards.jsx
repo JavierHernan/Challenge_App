@@ -39,7 +39,7 @@ export default function Leaderboards() {
 
         tallyBounties();
         console.log("LEADERBOARD IN USEEFFECT", leaderboard)
-    }, [completedBounties, users, leaderboard]);
+    }, [completedBounties, users]);
 
     return (
         <>
