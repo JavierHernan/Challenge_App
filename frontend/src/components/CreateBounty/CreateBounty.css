@@ -46,3 +46,7 @@
     font-size: 25px;
     border: none;
 }
+
+.CreateBounty-form p {
+    margin-left: 40px;
+}

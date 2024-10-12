@@ -9,11 +9,13 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = () => {
-    // e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
+  const toggleMenu = (e) => {
+    e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
     // if (!showMenu) setShowMenu(true);
     
-    setShowMenu(!showMenu);
+    // setShowMenu(!showMenu);
+    console.log("TOGGLEMENU")
+    setShowMenu((prevShowMenu) => !prevShowMenu);
   };
 
   useEffect(() => {
@@ -24,10 +26,12 @@ function ProfileButton({ user }) {
         setShowMenu(false);
       }
     };
-
+    console.log("BEFORE EVENT")
     document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener('click', closeMenu);
+    console.log("AFTER EVENT")
+    return () => {
+      document.removeEventListener('click', closeMenu);
+    }
   }, [showMenu]);
 
   const logout = (e) => {

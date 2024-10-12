@@ -1,6 +1,6 @@
 .update-comment-form {
     border: 3px solid #8D6A9F;
-    height: 240px;
+    /* height: 240px; */
     width: 350px;
     background-color: #C5CBD3;
     border-radius: 5px;
@@ -31,6 +31,7 @@
     /* border: 1px solid black; */
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 .update-comment-form-update-button button {
     font-size: 25px;
@@ -38,4 +39,8 @@
     border-radius: 5px;
     cursor: pointer;
     border: none;
+}
+
+.update-comment-form p {
+    margin-left: 2%;
 }

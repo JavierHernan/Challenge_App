@@ -1,7 +1,7 @@
 .update-bounty-form {
     /* border: 1px solid black; */
     border: 3px solid #8D6A9F;
-    height: 300px;
+    /* height: 300px; */
     width: 350px;
     background-color: #C5CBD3;
     border-radius: 5px;
@@ -36,6 +36,7 @@
     /* border: 1px solid black; */
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 .update-bounty-form-update-button button {
     /* border: 1px solid black; */
@@ -44,4 +45,8 @@
     border-radius: 5px;
     cursor: pointer;
     border: none;
+}
+
+.update-bounty-form p {
+    margin-left: 2%;
 }

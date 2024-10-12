@@ -8,15 +8,25 @@ export default function UpdateCommentForm({comment}) {
     const dispatch = useDispatch();
     const { closeModal, setLoadUpdate } = useModal();
     const [updatedComment, setUpdatedComment] = useState(comment.comment);
+    const [errors, setErrors] = useState({});
     // console.log("COMMENT INSIDE UPDATECOMMENTFORM", comment)
 
     const isValidForm = () => {
-        return updatedComment.trim().length > 0 && updatedComment.length <= 500;
+        // return updatedComment.trim().length > 0 && updatedComment.length <= 500;
+        let errors = {};
+        if (updatedComment.trim().length === 0) {
+            errors.comment = "Comment is required.";
+        }
+        if (updatedComment.length > 300) {
+            errors.comment = "Comment cannot exceed 300 characters.";
+        }
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (!isValidForm()) return;
         await dispatch(editComment(
             comment.boungtyId,
             comment.id,
@@ -42,8 +52,9 @@ export default function UpdateCommentForm({comment}) {
                         onChange={(e) => setUpdatedComment(e.target.value)}
                     />
                 </label>
+                {errors.comment && <p className='error-message'>{errors.comment}</p>}
                 <div className='update-comment-form-update-button'>
-                    <button type="submit" disabled={!isValidForm()}>Update</button>
+                    <button type="submit" >Update</button>
                 </div>
             </form>
         </>

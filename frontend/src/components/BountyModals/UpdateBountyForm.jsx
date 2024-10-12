@@ -9,14 +9,24 @@ export default function UpdateBountyForm({bounty}) {
     const { closeModal } = useModal();
     const [title, setTitle] = useState(bounty.title);
     const [description, setDescription] = useState(bounty.description);
+    const [errors, setErrors] = useState({});
 
     const isValidForm = () => {
-        return title.trim().length > 0 && description.trim().length > 0 && 
-               title.length <= 50 && description.length <= 500;
+        // return title.trim().length > 0 && description.trim().length > 0 && 
+        //        title.length <= 50 && description.length <= 500;
+        let errors = {};
+        if (title.trim().length === 0) errors.title = "Title is required.";
+        if (description.trim().length === 0) errors.description = "Description is required.";
+        if (title.length > 50) errors.title = "Title cannot exceed 50 characters.";
+        if (description.length > 500) errors.description = "Description cannot exceed 500 characters.";
+        
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!isValidForm()) return;
         const updatedBounty = {
             title,
             description,
@@ -35,6 +45,7 @@ export default function UpdateBountyForm({bounty}) {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </label>
+            {errors.title && <p className='error-message'>{errors.title}</p>}
             <label>
                 Description:
                 <textarea
@@ -42,8 +53,9 @@ export default function UpdateBountyForm({bounty}) {
                     onChange={(e) => setDescription(e.target.value)}
                 />
             </label>
+            {errors.description && <p className='error-message'>{errors.description}</p>}
             <div className='update-bounty-form-update-button'>
-                <button type="submit" disabled={!isValidForm()}>Update</button>
+                <button type="submit" >Update</button>
             </div>
         </form>
     )

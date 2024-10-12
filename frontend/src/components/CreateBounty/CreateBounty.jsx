@@ -12,7 +12,8 @@ export default function CreateBounty() {
     
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     useEffect(() => { //submit button is disabled if title or description are empty
@@ -30,6 +31,19 @@ export default function CreateBounty() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const validationErrors = {};
+        // Frontend validation
+        if (title.length > 50) {
+            validationErrors.title = 'Title cannot be more than 50 characters';
+        }
+        if (description.length > 500) {
+            validationErrors.description = 'Description cannot be more than 500 characters';
+        }
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
         const bountyData = {
             title,
@@ -50,26 +64,28 @@ export default function CreateBounty() {
         <>
             <form className='CreateBounty-form' onSubmit={handleSubmit}>
             <h2>Create a New Bounty</h2>
-                <ul>
-                    {errors.map((error, index) => <li key={index}>{error}</li>)}
-                </ul>
+                {/* <ul>
+                    {Object.values(errors).map((error, index) => <li key={index}>{error}</li>)}
+                </ul> */}
                 <label className='CreateBounty-title-label'>
                     Title:
                     <input 
                         type="text" 
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)} 
-                        maxLength="50"
+                        // maxLength="50"
                     />
                 </label>
+                {errors.title && <p className="error">{errors.title}</p>}
                 <label className='CreateBounty-description-label'>
                     Description:
                     <textarea 
                         value={description} 
                         onChange={(e) => setDescription(e.target.value)} 
-                        maxLength="500"
+                        // maxLength="500"
                     />
                 </label>
+                {errors.description && <p className="error">{errors.description}</p>}
                 <div className='CreateBounty-submit-container'>
                     <button type="submit" disabled={isButtonDisabled}>Create Bounty</button>
                 </div>
