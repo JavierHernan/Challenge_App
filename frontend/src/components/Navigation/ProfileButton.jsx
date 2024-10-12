@@ -50,7 +50,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={toggleMenu}>
-        <FaUserCircle />
+        <FaUserCircle onClick={toggleMenu} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         <li className='prof'>{user.username}</li>
