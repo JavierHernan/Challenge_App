@@ -79,6 +79,36 @@ module.exports = {
         bountyId:  6,
         completed: true,
       },
+      {
+        userId:  1,
+        bountyId:  7,
+        completed: true,
+      },
+      {
+        userId:  6,
+        bountyId:  8,
+        completed: true,
+      },
+      {
+        userId:  2,
+        bountyId:  9,
+        completed: true,
+      },
+      {
+        userId:  1,
+        bountyId:  10,
+        completed: true,
+      },
+      {
+        userId:  5,
+        bountyId:  11,
+        completed: true,
+      },
+      {
+        userId:  6,
+        bountyId:  7,
+        completed: true,
+      },
     ], { validate: true });
   },
 
