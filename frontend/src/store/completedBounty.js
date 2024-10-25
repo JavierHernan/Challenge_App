@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 const CREATE_COMPLETED_BOUNTY = 'completedBounty/CREATE_COMPLETED_BOUNTY';
 const SET_COMPLETED_BOUNTIES = 'completedBounty/SET_COMPLETED_BOUNTIES';
 const SET_COMPLETED_BOUNTIES_BY_BOUNTY = 'completedBounty/SET_COMPLETED_BOUNTIES_BY_BOUNTY';
+const SET_COMPLETED_BOUNTIES_BY_USER = 'completedBounty/SET_COMPLETED_BOUNTIES_BY_USER';
 
 // Action Creators
 const createCompletedBountyAction = (completedBounty) => ({
@@ -16,6 +17,10 @@ const setCompletedBountiesAction = (completedBounties) => ({
 });
 const setCompletedBountiesByBountyAction = (completedBounties) => ({
     type: SET_COMPLETED_BOUNTIES_BY_BOUNTY,
+    completedBounties,
+});
+const setCompletedBountiesByUserAction = (completedBounties) => ({
+    type: SET_COMPLETED_BOUNTIES_BY_USER,
     completedBounties,
 });
 
@@ -66,6 +71,16 @@ export const fetchCompletedBountyByBounty = (bountyId) => async (dispatch) => {
         return filteredCompletedBounties;
     }
 };
+// Thunk to fetch completed bounties by userId
+export const fetchCompletedBountiesByUser = (userId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/completed-bounty/user/${userId}`);
+    
+    if (response.ok) {
+        const completedBounties = await response.json();
+        dispatch(setCompletedBountiesByUserAction(completedBounties));
+        return completedBounties;
+    }
+};
 
 // Reducer (Add this to your completedBounty reducer)
 const initialState = {};
@@ -88,6 +103,11 @@ const completedBountyReducer = (state = initialState, action) => {
                 bountyState[bounty.id] = bounty;
             });
             return bountyState;
+        case SET_COMPLETED_BOUNTIES_BY_USER:
+        action.completedBounties.forEach(bounty => {
+            newState[bounty.id] = bounty;
+        });
+        return newState;
         default:
             return state;
     }

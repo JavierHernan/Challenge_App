@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBounties, removeBounty } from '../../store/bounty';
+import { fetchCompletedBountiesByUser } from '../../store/completedBounty';
 import { useNavigate } from 'react-router-dom';
 import BountyCard from '../BountyCard/BountyCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -14,11 +15,21 @@ export default function SplashPage() {
     console.log("BOUNTIES SPLASHPAGE", bounties, )
     const user = useSelector(state => state.session.user);
     console.log("USER SPLASHPAGE", user)
+
+    const completedBounties = useSelector(state => state);
+    console.log("completedBounties", completedBounties)
     const navigate = useNavigate();
+    
 
     useEffect(() => {
         dispatch(fetchBounties()); 
     }, [dispatch]);
+    //displaying completed bounty indicator
+    useEffect(() => {
+        if (user) {
+            dispatch(fetchCompletedBountiesByUser(user.id));
+        }
+    }, [user, dispatch])
 
     //Handlers
     const goToBounty = (e, bounty) => {
@@ -90,6 +101,11 @@ export default function SplashPage() {
                                         >
                                             Delete Bounty
                                         </button>
+                                        {completedBounties[bounty.id] && (
+                                            <div className="completed-indicator">
+                                                Completed
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                             </div>

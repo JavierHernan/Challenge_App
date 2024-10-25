@@ -48,4 +48,26 @@ router.get('/:bountyId/user/:userId', async (req, res) => {
     }
 });
 
+// Add a route to get completed bounties by userId
+router.get('/user/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const completedBounties = await CompletedBounty.findAll({
+            where: {
+                userId
+            }
+        });
+
+        if (!completedBounties.length) {
+            return res.status(404).json({ message: 'No completed bounties found for this user.' });
+        }
+
+        return res.json(completedBounties);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;
