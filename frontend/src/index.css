@@ -1,6 +1,7 @@
 /* TODO: Add sitewide styles */
 body {
     margin: 0px;
-    background-color: #C5CBD3;
+    /* background-color: #C5CBD3; */
+    background-color: #f0f0f0;
     font-family: 'Arial', 'Helvetica', sans-serif;
 }
