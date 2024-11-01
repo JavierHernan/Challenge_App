@@ -52,4 +52,5 @@
     right: 55px;
     bottom: 193px;
     border-bottom: 5px solid #866c9b;
+    pointer-events: none;
 }
