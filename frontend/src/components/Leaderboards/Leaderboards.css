@@ -24,7 +24,8 @@
 }
 .leaderboards-individual {
     /* border: 1px solid black; */
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    background-color: white;
     border: none;
     margin-bottom: 10px;
     font-size: 20px;
@@ -32,6 +33,24 @@
     justify-content: space-between;
     padding: 5px;
     border-radius: 5px;
+}
+.leaderboards-users-container .leaderboards-individual:nth-child(1) {
+    background: linear-gradient(135deg, #ffd700, #e6ac00, #ffd700); /* Gold gradient */
+    color: black; /* Adjust text color for readability */
+    background-size: 200% 200%;
+    animation: metallic 3s ease infinite;
+}
+.leaderboards-users-container .leaderboards-individual:nth-child(2) {
+    background: linear-gradient(135deg, #c0c0c0, #a9a9a9, #c0c0c0); /* Silver gradient */
+    color: black;
+    background-size: 200% 200%;
+    animation: metallic 3s ease infinite;
+}
+.leaderboards-users-container .leaderboards-individual:nth-child(3) {
+    background: linear-gradient(135deg, #cd7f32, #8c6239, #cd7f32); /* Bronze gradient */
+    color: black;
+    background-size: 200% 200%;
+    animation: metallic 3s ease infinite;
 }
 
 /* .leaderbaords-username {

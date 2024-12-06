@@ -10,6 +10,7 @@
     margin-left: 40px;
     font-size: 20px;
     cursor: pointer;
+    background-color: #C5CBD3;
 }
 .bounties-section {
     /* border: 1px solid black; */
@@ -21,7 +22,7 @@
     margin-top: 15px;
     padding: 10px;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
 .BountyCard-update-delete {
@@ -38,4 +39,18 @@
 }
 .BountyCard-delete-button {
     margin-left: 10px;
+}
+
+.gif-container {
+    flex-shrink: 0;
+    width: 285px;
+    height: 278px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 55px;
+    bottom: 193px;
+    border-bottom: 5px solid #866c9b;
+    pointer-events: none;
 }

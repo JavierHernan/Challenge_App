@@ -114,6 +114,16 @@ export default function SplashPage() {
                         <p>No bounties available at the moment.</p>  // Fallback message if no bounties
                     )}
                 </div>
+                <div className="gif-container">
+                    <iframe
+                        src="https://giphy.com/embed/MxYQrB9jeGzza"
+                        width="480"
+                        height="473"
+                        frameBorder="0"
+                        allowFullScreen
+                        title="giphy"
+                    ></iframe>
+                </div>
             </div>
         </>
     )
