@@ -28,12 +28,12 @@ export default function BountyDetails() {
     useEffect(() => {
         const getData = async () => {
             await dispatch(fetchBounties()) // Fetch bounties if not already fetched
-            console.log("MADE IT THIS FAR")
-            console.log("COMMENTS",comments)
-            console.log("bounty?.commentsCount",bounty?.commentsCount)
+            // console.log("MADE IT THIS FAR")
+            // console.log("COMMENTS",comments)
+            // console.log("bounty?.commentsCount",bounty?.commentsCount)
             if (bounty?.commentsCount > 0) {  // Adjust this based on your API response structure
                 const fetchedComments = await dispatch(fetchComments(bountyId));
-                console.log("MADE IT THIS FAR2");
+                // console.log("MADE IT THIS FAR2");
                 setBountyComments(fetchedComments);
             } else {
                 setBountyComments([]);  // Set empty comments if no comments exist

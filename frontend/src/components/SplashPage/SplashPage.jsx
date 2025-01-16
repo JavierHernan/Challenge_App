@@ -12,12 +12,14 @@ export default function SplashPage() {
     const dispatch = useDispatch();
     // const bounties = useSelector(state => state.bounties.bounties)
     const bounties = useSelector(state => state.bounties.bounties);
-    console.log("BOUNTIES SPLASHPAGE", bounties, )
+    // console.log("BOUNTIES SPLASHPAGE", bounties, )
     const user = useSelector(state => state.session.user);
-    console.log("USER SPLASHPAGE", user)
+    // console.log("USER SPLASHPAGE", user)
 
-    const completedBounties = useSelector(state => state);
+    const completedBounties = useSelector(state => state.completedBounty);
     console.log("completedBounties", completedBounties)
+
+    // console.log("completedBounties.completedBounty", completedBounties.completedBounty)
     const navigate = useNavigate();
     
 

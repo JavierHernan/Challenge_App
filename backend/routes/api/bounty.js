@@ -53,7 +53,7 @@ router.get(
             },
             group: ['Bounty.id'] // Group by Bounty ID to aggregate the count
         });
-        console.log("BOUNTIES IN API", bounties)
+        // console.log("BOUNTIES IN API", bounties)
 
         // const bounties = await Bounty.findAll({
         //     attributes: { exclude: ['bountyId'] } // WHY DO I NEED TO EXCLUDE BOUNTYID?????
