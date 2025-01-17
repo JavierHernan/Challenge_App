@@ -18,20 +18,23 @@ export default function SplashPage() {
 
     const completedBounties = useSelector(state => state.completedBounty);
     console.log("completedBounties", completedBounties)
+    console.log("completedBounties[1]", completedBounties[1])
+
 
     // console.log("completedBounties.completedBounty", completedBounties.completedBounty)
     const navigate = useNavigate();
     
 
-    useEffect(() => {
-        dispatch(fetchBounties()); 
-    }, [dispatch]);
+    
     //displaying completed bounty indicator
     useEffect(() => {
         if (user) {
             dispatch(fetchCompletedBountiesByUser(user.id));
         }
     }, [user, dispatch])
+    useEffect(() => {
+        dispatch(fetchBounties()); 
+    }, [dispatch]);
 
     //Handlers
     const goToBounty = (e, bounty) => {
@@ -89,6 +92,14 @@ export default function SplashPage() {
                                     {/* <BountyCard bounty={bounty} userId={user ? user.id : null} /> */}
                                     <BountyCard bounty={bounty} />
                                 </div>
+                                <h2>{bounty.id}</h2>
+                                <h2>{JSON.stringify(completedBounties[bounty.id])}</h2>
+                                <h2>{completedBounties[bounty.id]?.bountyId}</h2>
+                                {completedBounties[bounty.id] == completedBounties[bounty.id]?.bountyId ? (
+                                    <div className="completed-indicator">
+                                        Completed
+                                    </div>
+                                ) : <h1>Incomplete</h1>}
                                 {user !== null && bounty.userId === user.id && ( //does this bounty belong to current user? if so, show update/delete button
                                     <div className="BountyCard-update-delete">
                                         <button>
@@ -103,11 +114,7 @@ export default function SplashPage() {
                                         >
                                             Delete Bounty
                                         </button>
-                                        {completedBounties[bounty.id] && (
-                                            <div className="completed-indicator">
-                                                Completed
-                                            </div>
-                                        )}
+                                        
                                     </div>
                                 )}
                             </div>

@@ -39,7 +39,7 @@ export default function BountyDetails() {
                 setBountyComments([]);  // Set empty comments if no comments exist
             }
             // const fetchedComments = await dispatch(fetchComments(bountyId))
-            console.log("MADE IT THIS FAR2")
+            // console.log("MADE IT THIS FAR2")
             // console.log("Fetched Comments: ", fetchedComments);
             // setBountyComments(fetchedComments);
             setLoad(true)
