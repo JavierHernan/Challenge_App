@@ -64,26 +64,6 @@ export default function SplashPage() {
                         Create a Bounty
                     </button>
                 )}
-                {/* <div className="bounties-section">
-                    {bounties && bounties.map(bounty => (
-                            <div className="SplashPage-bounty" key={bounty.id}>
-                                <div onClick={(e) => goToBounty(e, bounty)}>
-                                    <BountyCard bounty={bounty} userId={user ? user.id : null} />
-                                </div>
-                                {user && bounty.userId === user.id && (
-                                    <div className="BountyCard-update-delete">
-                                        <button>
-                                            <OpenModalMenuItem
-                                                modalComponent={<UpdateBountyForm bounty={bounty} />}
-                                                itemText="Update Bounty"
-                                            />
-                                        </button>
-                                        <button className='BountyCard-delete-button' onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
-                                    </div>
-                                )}
-                            </div>
-                    ))}
-                </div> */}
                 <div className="bounties-section">
                     {bounties && bounties.length > 0 ? ( //are there bounties?
                         bounties.filter(bounty => bounty !== null).map(bounty => ( //filter for existing bounties and map
