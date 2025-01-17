@@ -92,14 +92,14 @@ export default function SplashPage() {
                                     {/* <BountyCard bounty={bounty} userId={user ? user.id : null} /> */}
                                     <BountyCard bounty={bounty} />
                                 </div>
-                                <h2>{bounty.id}</h2>
-                                <h2>{JSON.stringify(completedBounties[bounty.id])}</h2>
-                                <h2>{completedBounties[bounty.id]?.bountyId}</h2>
-                                {completedBounties[bounty.id] == completedBounties[bounty.id]?.bountyId ? (
+                                {
+                                Object.values(completedBounties).find(
+                                    (completedBounty) => completedBounty.bountyId === bounty.id
+                                ) ? (
                                     <div className="completed-indicator">
                                         Completed
                                     </div>
-                                ) : <h1>Incomplete</h1>}
+                                ) : null}
                                 {user !== null && bounty.userId === user.id && ( //does this bounty belong to current user? if so, show update/delete button
                                     <div className="BountyCard-update-delete">
                                         <button>
