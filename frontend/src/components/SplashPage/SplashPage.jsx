@@ -93,7 +93,9 @@ export default function SplashPage() {
                                     <BountyCard bounty={bounty} />
                                 </div>
                                 {
-                                Object.values(completedBounties).find(
+                                //access nested objects without completedBounties[bounty.id] using Object.values
+                                //to get to key values of bountyId to compare to bounty.id to initialize 'Completed'
+                                Object.values(completedBounties).find( 
                                     (completedBounty) => completedBounty.bountyId === bounty.id
                                 ) ? (
                                     <div className="completed-indicator">
