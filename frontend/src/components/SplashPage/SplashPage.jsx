@@ -19,10 +19,7 @@ export default function SplashPage() {
     const completedBounties = useSelector(state => state.completedBounty);
     // console.log("completedBounties", completedBounties)
 
-    // console.log("completedBounties.completedBounty", completedBounties.completedBounty)
     const navigate = useNavigate();
-    
-
     
     //displaying completed bounty indicator
     useEffect(() => {
@@ -94,7 +91,6 @@ export default function SplashPage() {
                                         >
                                             Delete Bounty
                                         </button>
-                                        
                                     </div>
                                 )}
                             </div>
