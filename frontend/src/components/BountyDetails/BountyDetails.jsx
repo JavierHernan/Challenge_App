@@ -20,6 +20,9 @@ export default function BountyDetails() {
     const user = useSelector(state => state.session.user);
     const completedBounties = useSelector(state => state.completedBounty);
     const users = useSelector(state => state.users)
+    // console.log("comments", comments)
+    // console.log("users", users)
+    // console.log("completedBounties", completedBounties)
 
 
     const [bountyComments, setBountyComments] = useState([]);
@@ -79,7 +82,11 @@ export default function BountyDetails() {
     }, [dispatch, user, bountyId, completedBountyByHandler])
 
     useEffect(() => {
-
+        const getData = async () => {
+            await dispatch(fetchUsers());
+            await dispatch(fetchCompletedBounties());
+        };
+        getData();
     }, [completedBounties, users])
     
     if (!bounty) return <div>Loading bounty details...</div>;
