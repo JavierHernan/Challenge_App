@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBounties } from '../../store/bounty';
 import { fetchComments } from '../../store/comment';
-import { createCompletedBounty, fetchCompletedBountyByBounty } from '../../store/completedBounty';
+import { createCompletedBounty, fetchCompletedBountyByBounty, fetchCompletedBounties } from '../../store/completedBounty';
+import { fetchUsers } from '../../store/user';
 import { useParams } from 'react-router-dom';
 import CommentCard from '../CommentCard/CommentCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -17,6 +18,9 @@ export default function BountyDetails() {
     const bounty = useSelector(state => state.bounties.bounties.find(b => b.id === parseInt(bountyId)));
     const comments = useSelector(state => state);
     const user = useSelector(state => state.session.user);
+    const completedBounties = useSelector(state => state.completedBounty);
+    const users = useSelector(state => state.users)
+
 
     const [bountyComments, setBountyComments] = useState([]);
     const [load, setLoad] = useState(false)
@@ -73,6 +77,10 @@ export default function BountyDetails() {
         }
         getData()
     }, [dispatch, user, bountyId, completedBountyByHandler])
+
+    useEffect(() => {
+
+    }, [completedBounties, users])
     
     if (!bounty) return <div>Loading bounty details...</div>;
 

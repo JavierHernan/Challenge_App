@@ -17,9 +17,7 @@ export default function SplashPage() {
     // console.log("USER SPLASHPAGE", user)
 
     const completedBounties = useSelector(state => state.completedBounty);
-    console.log("completedBounties", completedBounties)
-    console.log("completedBounties[1]", completedBounties[1])
-
+    // console.log("completedBounties", completedBounties)
 
     // console.log("completedBounties.completedBounty", completedBounties.completedBounty)
     const navigate = useNavigate();
@@ -48,7 +46,7 @@ export default function SplashPage() {
         navigate(`/bounty/new`);  // Navigate to the Create Bounty form
     };
     const handleDelete = (bountyId) => {
-        console.log("Deleting Bounty ID:", bountyId);
+        // console.log("Deleting Bounty ID:", bountyId);
         dispatch(removeBounty(bountyId));
     };
 
