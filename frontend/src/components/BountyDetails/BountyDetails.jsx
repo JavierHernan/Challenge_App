@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBounties } from '../../store/bounty';
 import { fetchComments } from '../../store/comment';
-import { createCompletedBounty, fetchCompletedBountyByBounty } from '../../store/completedBounty';
+import { createCompletedBounty, fetchCompletedBountyByBounty, fetchCompletedBounties } from '../../store/completedBounty';
+import { fetchUsers } from '../../store/user';
 import { useParams } from 'react-router-dom';
 import CommentCard from '../CommentCard/CommentCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -17,6 +18,12 @@ export default function BountyDetails() {
     const bounty = useSelector(state => state.bounties.bounties.find(b => b.id === parseInt(bountyId)));
     const comments = useSelector(state => state);
     const user = useSelector(state => state.session.user);
+    const completedBounties = useSelector(state => state.completedBounty);
+    const users = useSelector(state => state.users)
+    // console.log("comments", comments)
+    // console.log("users", users)
+    // console.log("completedBounties", completedBounties)
+
 
     const [bountyComments, setBountyComments] = useState([]);
     const [load, setLoad] = useState(false)
@@ -28,18 +35,18 @@ export default function BountyDetails() {
     useEffect(() => {
         const getData = async () => {
             await dispatch(fetchBounties()) // Fetch bounties if not already fetched
-            console.log("MADE IT THIS FAR")
-            console.log("COMMENTS",comments)
-            console.log("bounty?.commentsCount",bounty?.commentsCount)
+            // console.log("MADE IT THIS FAR")
+            // console.log("COMMENTS",comments)
+            // console.log("bounty?.commentsCount",bounty?.commentsCount)
             if (bounty?.commentsCount > 0) {  // Adjust this based on your API response structure
                 const fetchedComments = await dispatch(fetchComments(bountyId));
-                console.log("MADE IT THIS FAR2");
+                // console.log("MADE IT THIS FAR2");
                 setBountyComments(fetchedComments);
             } else {
                 setBountyComments([]);  // Set empty comments if no comments exist
             }
             // const fetchedComments = await dispatch(fetchComments(bountyId))
-            console.log("MADE IT THIS FAR2")
+            // console.log("MADE IT THIS FAR2")
             // console.log("Fetched Comments: ", fetchedComments);
             // setBountyComments(fetchedComments);
             setLoad(true)
@@ -73,6 +80,15 @@ export default function BountyDetails() {
         }
         getData()
     }, [dispatch, user, bountyId, completedBountyByHandler])
+
+    useEffect(() => {
+        const getData = async () => {
+            await dispatch(fetchUsers());
+            await dispatch(fetchCompletedBounties());
+        };
+        getData();
+    }, [completedBounties, users])
+    //^^This useEffect result in an stack overflow. Fix this.
     
     if (!bounty) return <div>Loading bounty details...</div>;
 

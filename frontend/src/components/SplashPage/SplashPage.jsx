@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBounties, removeBounty } from '../../store/bounty';
+import { fetchCompletedBountiesByUser } from '../../store/completedBounty';
 import { useNavigate } from 'react-router-dom';
 import BountyCard from '../BountyCard/BountyCard';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -11,11 +12,21 @@ export default function SplashPage() {
     const dispatch = useDispatch();
     // const bounties = useSelector(state => state.bounties.bounties)
     const bounties = useSelector(state => state.bounties.bounties);
-    console.log("BOUNTIES SPLASHPAGE", bounties, )
+    // console.log("BOUNTIES SPLASHPAGE", bounties, )
     const user = useSelector(state => state.session.user);
-    console.log("USER SPLASHPAGE", user)
-    const navigate = useNavigate();
+    // console.log("USER SPLASHPAGE", user)
 
+    const completedBounties = useSelector(state => state.completedBounty);
+    // console.log("completedBounties", completedBounties)
+
+    const navigate = useNavigate();
+    
+    //displaying completed bounty indicator
+    useEffect(() => {
+        if (user) {
+            dispatch(fetchCompletedBountiesByUser(user.id));
+        }
+    }, [user, dispatch])
     useEffect(() => {
         dispatch(fetchBounties()); 
     }, [dispatch]);
@@ -32,7 +43,7 @@ export default function SplashPage() {
         navigate(`/bounty/new`);  // Navigate to the Create Bounty form
     };
     const handleDelete = (bountyId) => {
-        console.log("Deleting Bounty ID:", bountyId);
+        // console.log("Deleting Bounty ID:", bountyId);
         dispatch(removeBounty(bountyId));
     };
 
@@ -48,26 +59,6 @@ export default function SplashPage() {
                         Create a Bounty
                     </button>
                 )}
-                {/* <div className="bounties-section">
-                    {bounties && bounties.map(bounty => (
-                            <div className="SplashPage-bounty" key={bounty.id}>
-                                <div onClick={(e) => goToBounty(e, bounty)}>
-                                    <BountyCard bounty={bounty} userId={user ? user.id : null} />
-                                </div>
-                                {user && bounty.userId === user.id && (
-                                    <div className="BountyCard-update-delete">
-                                        <button>
-                                            <OpenModalMenuItem
-                                                modalComponent={<UpdateBountyForm bounty={bounty} />}
-                                                itemText="Update Bounty"
-                                            />
-                                        </button>
-                                        <button className='BountyCard-delete-button' onClick={() => handleDelete(bounty.id)}>Delete Bounty</button>
-                                    </div>
-                                )}
-                            </div>
-                    ))}
-                </div> */}
                 <div className="bounties-section">
                     {bounties && bounties.length > 0 ? ( //are there bounties?
                         bounties.filter(bounty => bounty !== null).map(bounty => ( //filter for existing bounties and map
@@ -76,6 +67,16 @@ export default function SplashPage() {
                                     {/* <BountyCard bounty={bounty} userId={user ? user.id : null} /> */}
                                     <BountyCard bounty={bounty} />
                                 </div>
+                                {
+                                //access nested objects without completedBounties[bounty.id] using Object.values
+                                //to get to key values of bountyId to compare to bounty.id to initialize 'Completed'
+                                Object.values(completedBounties).find( 
+                                    (completedBounty) => completedBounty.bountyId === bounty.id
+                                ) ? (
+                                    <div className="completed-indicator">
+                                        Completed
+                                    </div>
+                                ) : null}
                                 {user !== null && bounty.userId === user.id && ( //does this bounty belong to current user? if so, show update/delete button
                                     <div className="BountyCard-update-delete">
                                         <button>
