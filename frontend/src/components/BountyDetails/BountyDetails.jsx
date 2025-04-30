@@ -88,6 +88,7 @@ export default function BountyDetails() {
         };
         getData();
     }, [completedBounties, users])
+    //^^This useEffect result in an stack overflow. Fix this.
     
     if (!bounty) return <div>Loading bounty details...</div>;
 
