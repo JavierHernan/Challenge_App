@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Add a XSRF-TOKEN cookie in development
+//XSRF tokens ensure that the API fetch request is coming from a trusted source. Protects from CSRF attacks.
 if (process.env.NODE_ENV !== 'production') {
   router.get('/api/csrf/restore', (req, res) => {
     res.cookie('XSRF-TOKEN', req.csrfToken());
