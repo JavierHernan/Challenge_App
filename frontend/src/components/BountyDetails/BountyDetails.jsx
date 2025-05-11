@@ -16,7 +16,7 @@ export default function BountyDetails() {
     const { bountyId } = useParams(); // Get the bountyId from the URL
     const { loadUpdate, setLoadUpdate } = useModal();
     const bounty = useSelector(state => state.bounties.bounties.find(b => b.id === parseInt(bountyId)));
-    const comments = useSelector(state => state);
+    // const comments = useSelector(state => state);
     const user = useSelector(state => state.session.user);
     const completedBounties = useSelector(state => state.completedBounty);
     const users = useSelector(state => state.users)
@@ -54,6 +54,8 @@ export default function BountyDetails() {
         getData()
         setLoadDelete(false)
         setLoadUpdate(false)
+        console.log("useEffectOne")
+
     }, [
         dispatch,
         bountyId,
@@ -79,6 +81,8 @@ export default function BountyDetails() {
             }
         }
         getData()
+        console.log("useEffectTwo")
+
     }, [dispatch, user, bountyId, completedBountyByHandler])
 
     useEffect(() => {
@@ -87,7 +91,10 @@ export default function BountyDetails() {
             await dispatch(fetchCompletedBounties());
         };
         getData();
-    }, [completedBounties, users])
+        console.log("useEffectThree")
+    }, [])
+    //taking out completedBounties
+    //taking out users dependency
     //^^This useEffect result in an stack overflow. Fix this.
     
     if (!bounty) return <div>Loading bounty details...</div>;

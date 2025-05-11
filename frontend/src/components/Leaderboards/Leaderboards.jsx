@@ -9,7 +9,7 @@ export default function Leaderboards() {
     const users = useSelector(state => state.users);
     const completedBounties = useSelector(state => state.completedBounty);
     const [leaderboard, setLeaderboard] = useState([]);
-    console.log("COMPLETEDBOUNTIES FIRST", completedBounties)
+    // console.log("COMPLETEDBOUNTIES FIRST", completedBounties)
 
     useEffect(() => {
         const getData = async () => {
@@ -20,7 +20,6 @@ export default function Leaderboards() {
     }, [dispatch]);
 
     useEffect(() => {
-        console.log("COMPLETEDBOUNTIES IN USEEFFECT", completedBounties)
         const tallyBounties = () => {
             const counts = {};
 
@@ -38,7 +37,7 @@ export default function Leaderboards() {
         };
 
         tallyBounties();
-        console.log("LEADERBOARD IN USEEFFECT", leaderboard)
+        // console.log("useEffectTwotriggered", completedBounties)
     }, [completedBounties, users]);
 
     return (

@@ -10,7 +10,7 @@ const setUsersAction = (users) => ({
 });
 
 // Thunk for fetching all users
-export const fetchUsers = () => async (dispatch) => {
+export const fetchUsers = () => async (dispatch) => { //This is contributing to stack overflow
     const response = await csrfFetch('/api/users');
     
     if (response.ok) {

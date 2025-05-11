@@ -37,7 +37,7 @@ export const createCompletedBounty = (completedBountyData) => async (dispatch) =
         return completedBounty;
     }
 };
-export const fetchCompletedBounties = () => async (dispatch) => {
+export const fetchCompletedBounties = () => async (dispatch) => {//This is contributing to StackOverflow
     const response = await csrfFetch('/api/completed-bounty');
 
     if (response.ok) {
@@ -86,17 +86,31 @@ export const fetchCompletedBountiesByUser = (userId) => async (dispatch) => {
 const initialState = {};
 
 const completedBountyReducer = (state = initialState, action) => {
+    // let newState;
     let newState = {};
     let bountyState = {};
     switch (action.type) {
         case CREATE_COMPLETED_BOUNTY:
             return { ...state, [action.completedBounty.id]: action.completedBounty };
         case SET_COMPLETED_BOUNTIES:
-            // const newState = {};
+            // newState = {};
+            console.log("CompletedBountyReducer: SET_COMPLETED_BOUNTIES")
             action.completedBounties.forEach(bounty => {
                 newState[bounty.id] = bounty;
             });
             return newState;
+            // action.completedBounties.forEach(bounty => {
+            //     newState[bounty.id] = bounty;
+            //   });
+            
+            //   const isSame =
+            //     Object.keys(newState).length === Object.keys(state).length &&
+            //     Object.keys(newState).every(id => {
+            //       return JSON.stringify(newState[id]) === JSON.stringify(state[id]);
+            //     });
+            
+            //   if (isSame) return state; // 
+            //   return newState;
         case SET_COMPLETED_BOUNTIES_BY_BOUNTY: // Add new case for fetching by bountyId
             // const bountyState = {};
             action.completedBounties.forEach(bounty => {
@@ -104,6 +118,7 @@ const completedBountyReducer = (state = initialState, action) => {
             });
             return bountyState;
         case SET_COMPLETED_BOUNTIES_BY_USER:
+        newState = {}
         action.completedBounties.forEach(bounty => {
             newState[bounty.id] = bounty;
         });
