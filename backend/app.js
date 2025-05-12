@@ -32,6 +32,7 @@ if (!isProduction) {
   );
   
   // Set the _csrf token and create req.csrfToken method
+  //CSRF token value prevents forged requests and ensure the legitimacy of form submissions
   app.use(
     csurf({
       cookie: {

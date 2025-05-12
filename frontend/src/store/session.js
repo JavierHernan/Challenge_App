@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf';
-
+//This file is responsible for user authentication state
 //Constants
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
